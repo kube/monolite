@@ -1,0 +1,17 @@
+{
+  "name": "settle",
+  "version": "0.0.1",
+  "description": "Structural-sharing tree modifier",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha dist/test"
+  },
+  "author": "Christophe Feijoo",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}
