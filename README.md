@@ -19,3 +19,5 @@ autumnTree
 
 ## TypeScript
 The main motivation of this library is to preserve static-typing, type-inference and completion provided by TypeScript, which is broken when using Immutable.js `fromJSON`.
+
+Settle takes Plain-Old JavaScript Objects and returns Plain-Old JavaScript Objects. Accessors permits TypeScript to understand the types you're dealing with and to provide completion and linting as if you were working directly on these objects.
