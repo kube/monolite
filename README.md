@@ -7,7 +7,7 @@ Settle is a little JavaScript library that permits to modify a tree by stuctural
 import { set } from 'settle'
 
 const summerTree = { firstLeaf: 'green', lastLeaf: 'green' }
-const autumnTree = set(tree, _ => _.firstLeaf)('yellow')
+const autumnTree = set(summerTree, _ => _.firstLeaf)('yellow')
 
 summerTree
 //=> { firstLeaf: 'green', lastLeaf: 'green' }
