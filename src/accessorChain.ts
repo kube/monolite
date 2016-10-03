@@ -8,35 +8,36 @@
      ## ## ## :##
       ## ## ##*/
 
+const ACCESSOR_CHAIN = Symbol()
+
 /**
- * Returns a proxy of object that will feed accessor chain when accessing member
+ * Returns a proxy object that will fill accessor chain when accessing a member
  */
-const proxyAccessorChain = <T>(accessorChain: string[], node: T): T =>
-  new Proxy(node, {
-    get: (node: any, name: string) => {
+let currentAccessorChain: string[] = []
 
-      if (node.hasOwnProperty(name)) {
-        const child = node[name]
-        accessorChain.push(name)
-
-        // If child is not an object there's no need to proxify it
-        return child instanceof Object ?
-          proxyAccessorChain(accessorChain, child) : child
-      }
-      else
-        return node[name]
+const ProxyAccessorChain: any = new Proxy({}, {
+  get: (node: any, name: string | symbol) => {
+    // Get accessors chain and clear it for next use
+    if (name === ACCESSOR_CHAIN) {
+      const accessorChain = currentAccessorChain
+      currentAccessorChain = []
+      return accessorChain
     }
-  })
+    else {
+      // Push current accessor to accessor chain
+      currentAccessorChain.push(name as string)
+      return ProxyAccessorChain
+    }
+  }
+})
 
 /**
- * Returns accessors chain given rootNode and accessor expression
+ * Returns accessors chain given an accessor expression
+ * e.g. `_ => _.a.b` will return `['a', 'b']`
  */
-export const getAccessorChain = <R, T>(root: R, accessor: (_: R) => T) => {
+export const getAccessorChain = (accessor: (_: any) => any) => {
   const accessorChain: string[] = []
-  const rootProxy = proxyAccessorChain(accessorChain, root)
 
-  // Fill accessorChain
-  accessor(rootProxy)
-
-  return accessorChain
+  accessor(ProxyAccessorChain)
+  return ProxyAccessorChain[ACCESSOR_CHAIN]
 }

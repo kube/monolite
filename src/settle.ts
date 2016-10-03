@@ -30,4 +30,4 @@ const setFromAccessorChain = <T, R>(root: R, accessorChain: string[]) =>
  */
 export const set = <R, T>(root: R, accessor: (x: R) => T) =>
   // TODO: Check deepEqual to return same root if not modified
-  setFromAccessorChain<T, R>(root, getAccessorChain(root, accessor))
+  setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
