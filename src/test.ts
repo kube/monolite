@@ -30,4 +30,13 @@ describe('set', () => {
     expect(tree.b.c).to.equal(true)
     expect(updatedTree.b.c).to.equal(false)
   })
+
+  it('can take function as value', () => {
+    const tree = { b: { c: true } }
+    const updatedTree = set(tree, _ => _.b.c)(c => !c)
+
+    expect(updatedTree).not.to.equal(tree)
+    expect(tree.b.c).to.equal(true)
+    expect(updatedTree.b.c).to.equal(false)
+  })
 })
