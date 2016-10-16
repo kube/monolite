@@ -36,8 +36,6 @@ const ProxyAccessorChain: any = new Proxy({}, {
  * e.g. `_ => _.a.b` will return `['a', 'b']`
  */
 export const getAccessorChain = (accessor: (_: any) => any) => {
-  const accessorChain: string[] = []
-
   accessor(ProxyAccessorChain)
   return ProxyAccessorChain[ACCESSOR_CHAIN]
 }
