@@ -1,16 +1,17 @@
 {
-  "name": "settle",
+  "name": "monolite",
   "version": "0.0.1",
-  "description": "Structural-sharing tree modifier",
+  "description": "Structural-sharing tree object modifier",
   "main": "index.js",
   "scripts": {
     "test": "mocha dist/test"
   },
   "author": "Christophe Feijoo",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
     "typescript": "^2.1.0-dev"

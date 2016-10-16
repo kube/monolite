@@ -35,6 +35,6 @@ const setFromAccessorChain =
 /**
  * Return a new tree with applied modification
  */
-export const set = <R, T>(root: R, accessor: (x: R) => T) =>
+export const set = <R, T extends Target, P extends T>(root: R, accessor: (x: R) => T, value: P | ((_: P) => P)) =>
   // TODO: Check deepEqual to return same root if not modified
-  setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
+  setFromAccessorChain<T, R>(root, getAccessorChain(accessor))(value)
