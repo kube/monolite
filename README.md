@@ -1,9 +1,9 @@
 # Monolite
 > Structural-sharing tree modifier
 
-Monolite is a little JavaScript library that permits to modify a tree by stuctural-sharing preserving tree immutability.
+**Monolite** is a little JavaScript library that permits to modify a tree by stuctural-sharing preserving tree immutability.
 
-```
+```js
 import { set } from 'monolite'
 
 const summerTree = {
@@ -15,7 +15,7 @@ const autumnTree = set(summerTree, _ => _.firstLeaf)('yellow')
 ```
 
 `summerTree` is still the same object as declared:
-```
+```js
 {
   firstLeaf: 'green',
   lastLeaf: 'green'
@@ -23,7 +23,7 @@ const autumnTree = set(summerTree, _ => _.firstLeaf)('yellow')
 ```
 
 `autumnTree` shares structure with `summerTree` except for `firstLeaf` which has been set to `'yellow'`
-```
+```js
 {
   firstLeaf: 'yellow',
   lastLeaf: 'green'
