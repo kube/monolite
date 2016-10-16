@@ -2,11 +2,13 @@
   "name": "monolite",
   "version": "0.0.1",
   "description": "Structural-sharing tree object modifier",
-  "main": "index.js",
+  "main": "dist/monolite.js",
+  "types": "dist/monolite.d.ts",
   "scripts": {
+    "build": "tsc",
     "test": "mocha dist/test"
   },
-  "author": "Christophe Feijoo",
+  "author": "Chris Feijoo <hello@kube.io>",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
