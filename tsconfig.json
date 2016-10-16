@@ -2,8 +2,9 @@
   "compilerOptions": {
     "target": "es6",
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "outDir": "dist",
-    "sourceRoot": "src",
+    "rootDir": "src",
     "module": "commonjs"
   }
 }
