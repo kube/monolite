@@ -33,4 +33,4 @@ const autumnTree = set(summerTree, _ => _.firstLeaf)('yellow')
 ## TypeScript
 The main motivation of this library is to preserve static-typing, type-inference and completion provided by TypeScript, which is broken when using Immutable.js `fromJSON`.
 
-Monolite takes Plain-Old JavaScript Objects and returns Plain-Old JavaScript Objects. Accessors permits TypeScript to understand the types you're dealing with and to provide completion and linting as if you were working directly on these objects.
+Monolite takes Plain-Old JavaScript Objects and returns Plain-Old JavaScript Objects. Accessors permit TypeScript to understand the types you're dealing with and to provide completion and linting as if you were working directly on these objects.
