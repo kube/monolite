@@ -10,7 +10,7 @@
 
 import { getAccessorChain } from './accessorChain'
 
-export type Target = string | number | boolean | {} | any[]
+export type Target = string | number | boolean | {} | any[] | undefined
 
 const setFromAccessorChain =
   <T extends Target, R>(root: R, accessorChain: string[]) =>
