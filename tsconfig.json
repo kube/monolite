@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "module": "es6",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "declaration": true,
     "removeComments": true,
     "outDir": "dist",
-    "rootDir": "src",
-    "module": "commonjs"
+    "rootDir": "src"
   }
 }
