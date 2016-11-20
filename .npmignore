@@ -1,4 +1,8 @@
-/src
+/.vscode
 /.editorconfig
+/yarn.lock
+.babelrc
+gulpfile.js
 tsconfig.json
-yarn.lock
+/src
+/lib/test.*
