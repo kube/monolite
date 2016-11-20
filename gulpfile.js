@@ -24,7 +24,7 @@ gulp.task('build', () => {
   return merge(
     tsResult.js
       .pipe(babel())
-      .pipe(gulp.dest('dist')),
-    tsResult.dts.pipe(gulp.dest('dist'))
+      .pipe(gulp.dest(typescriptOptions.outDir)),
+    tsResult.dts.pipe(gulp.dest(typescriptOptions.outDir))
   )
 })
