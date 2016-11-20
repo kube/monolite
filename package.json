@@ -6,8 +6,8 @@
   "types": "dist/monolite.d.ts",
   "scripts": {
     "build": "gulp build",
-    "prepublish": "gulp build",
-    "test": "mocha dist/test"
+    "prepublish": "gulp build && mocha lib/test",
+    "test": "mocha lib/test"
   },
   "author": "Chris Feijoo <hello@kube.io>",
   "license": "MIT",
