@@ -1,6 +1,6 @@
 {
   "name": "monolite",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Structural-sharing tree object modifier",
   "main": "dist/monolite.js",
   "types": "dist/monolite.d.ts",
