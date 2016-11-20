@@ -24,6 +24,7 @@ gulp.task('build', () => {
     tsResult.js
       .pipe(babel())
       .pipe(gulp.dest(tsOptions.outDir)),
-    tsResult.dts.pipe(gulp.dest(tsOptions.outDir))
+    tsResult.dts
+      .pipe(gulp.dest(tsOptions.outDir))
   )
 })
