@@ -1,9 +1,9 @@
 {
   "name": "monolite",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Structural-sharing tree object modifier",
-  "main": "dist/monolite.js",
-  "types": "dist/monolite.d.ts",
+  "main": "lib/monolite.js",
+  "types": "lib/monolite.d.ts",
   "scripts": {
     "build": "gulp build",
     "prepublish": "gulp build && mocha lib/test",
