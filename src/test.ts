@@ -11,7 +11,7 @@
 import 'mocha'
 import { expect } from 'chai'
 import { getAccessorChain } from './accessorChain'
-import { set } from './monolite'
+import { set, setMap } from './monolite'
 
 describe('getAccessorChain', () => {
   it('transforms accessor function in array of consecutive accessors', () => {
@@ -38,5 +38,17 @@ describe('set', () => {
     expect(updatedTree).not.to.equal(tree)
     expect(tree.b.c).to.equal(true)
     expect(updatedTree.b.c).to.equal(false)
+  })
+})
+
+describe('setMap', () => {
+  it('return a new update tree, with modifications in an array ', () => {
+    const tree = {b: false, c: [true, true]}
+    const updatedTree = setMap(tree, _ => _.c)(value => !value)
+
+    expect(updatedTree).not.to.eql(tree)
+    expect(updatedTree).to.have.property('c')
+      .that.is.an('array')
+        .to.be.eql([false, false])
   })
 })
