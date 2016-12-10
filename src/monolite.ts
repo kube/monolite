@@ -38,3 +38,10 @@ const setFromAccessorChain =
 export const set = <R, T extends Target>(root: R, accessor: (x: R) => T) =>
   // TODO: Check deepEqual to return same root if not modified
   setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
+
+/**
+ * Return a new tree with applied modification on an array
+ */
+export const setMap = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
+  (callback: ((_: T) => T)): R =>
+    set(root, accessor)(arr => arr.map(value => callback(value)))
