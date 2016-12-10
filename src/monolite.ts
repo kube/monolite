@@ -40,7 +40,7 @@ export const set = <R, T extends Target>(root: R, accessor: (x: R) => T) =>
   setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
 
 /**
- * Return a new tree with applied modification in an array
+ * Return a new tree with applied modification on an array
  */
 export const setMap = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
   (callback: ((_: T) => T)): R =>
