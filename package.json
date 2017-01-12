@@ -6,9 +6,8 @@
   "types": "lib/monolite.d.ts",
   "scripts": {
     "build": "gulp build",
-    "prepublish": "gulp build && mocha lib/test",
-    "pretest": "gulp build",
-    "test": "mocha lib/test"
+    "prepublish": "gulp",
+    "test": "gulp"
   },
   "author": "Chris Feijoo <hello@kube.io>",
   "license": "MIT",
@@ -21,10 +20,12 @@
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-mocha": "^3.0.1",
     "gulp-typescript": "^3.1.4",
     "merge-stream": "^1.0.1",
     "mocha": "^3.2.0",
     "path": "^0.12.7",
+    "run-sequence": "^1.2.2",
     "typescript": "^2.1.4"
   }
 }
