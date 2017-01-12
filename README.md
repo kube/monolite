@@ -80,7 +80,7 @@ gulp test
 ```
 
 ### Development mode
-Will watch source and build and run tests automatically on update.
+Will watch source, build and run tests automatically on update.
 
 ```sh
 gulp dev
