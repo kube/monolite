@@ -73,14 +73,14 @@ gulp build
 ```
 
 ### Test
-Will run tests using Mocha
+Will run tests using **Mocha**.
 
 ```sh
 gulp test
 ```
 
 ### Development mode
-Will watch source, build and run tests automatically on update.
+Will **watch** source, build and run tests automatically on update.
 
 ```sh
 gulp dev
