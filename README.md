@@ -1,39 +1,66 @@
 # Monolite
-> Structural-sharing tree modifier
+## Structural-sharing tree modifier
 
 **Monolite** is a little JavaScript library that permits to modify a tree by stuctural-sharing preserving tree immutability.
 
+## Usage
+
+Consider a tree `summerTree` with two branches, and two leaves for each of its branches.
+
+```js
+const summerTree = {
+  leftBranch: {
+    firstLeaf: 'green',
+    lastLeaf: 'green'
+  },
+  rightBranch: {
+    firstLeaf: 'green',
+    lastLeaf: 'green'
+  }
+}
+```
+
+Imagine that we want to apply a modification on `summerTree`, in a functional way, without doing any mutation.
+
+We want to define a new tree, `autumnTree`, which will have the `firstLeaf` of its `rightBranch` set as yellow.
+
 ```js
 import { set } from 'monolite'
-
-const summerTree = {
-  firstLeaf: 'green',
-  lastLeaf: 'green'
-}
-
-const autumnTree = set(summerTree, _ => _.firstLeaf)('yellow')
+const autumnTree = set(summerTree, _ => _.rightBranch.firstLeaf)('yellow')
 ```
 
 `summerTree` is still the same object as declared:
 ```js
 {
-  firstLeaf: 'green',
-  lastLeaf: 'green'
+  leftBranch: {
+    firstLeaf: 'green',
+    lastLeaf: 'green'
+  },
+  rightBranch: {
+    firstLeaf: 'green',
+    lastLeaf: 'green'
+  }
 }
 ```
 
-`autumnTree` shares structure with `summerTree` except for `firstLeaf` which has been set to `'yellow'`
+`autumnTree` shares structure with `summerTree` except for `firstLeaf` of `rightBranch` which has been set to `'yellow'`
 ```js
 {
-  firstLeaf: 'yellow',
-  lastLeaf: 'green'
+  leftBranch: {
+    firstLeaf: 'green',
+    lastLeaf: 'green'
+  },
+  rightBranch: {
+    firstLeaf: 'yellow',
+    lastLeaf: 'green'
+  }
 }
 ```
 
 ## TypeScript
 The main motivation of this library is to preserve static-typing, type-inference and completion provided by TypeScript, which is broken when using Immutable.js `fromJSON`.
 
-Monolite takes Plain-Old JavaScript Objects and returns Plain-Old JavaScript Objects. Accessors permit TypeScript to understand the types you're dealing with and to provide completion and linting as if you were working directly on these objects.
+**Monolite** takes **Plain-Old JavaScript Objects** and returns **Plain-Old JavaScript Objects**. Accessors permit TypeScript to understand the types you're dealing with and to provide completion and linting as if you were working directly on these objects.
 
 
 ## Development
