@@ -45,3 +45,17 @@ export const set = <R, T extends Target>(root: R, accessor: (x: R) => T) =>
 export const setMap = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
   (callback: ((_: T) => T)): R =>
     set(root, accessor)(arr => arr.map(value => callback(value)))
+
+/**
+ * Return a new updated tree, with item appended to array
+ */
+export const setAppend = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
+  (item: T): R =>
+    set(root, accessor)(arr => [...arr, item])
+
+/**
+ * Return a new updated tree, with item prepended to array
+ */
+export const setPrepend = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
+  (item: T): R =>
+    set(root, accessor)(arr => [item, ...arr])
