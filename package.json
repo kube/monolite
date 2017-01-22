@@ -9,7 +9,10 @@
     "prepublish": "gulp",
     "test": "gulp"
   },
-  "author": "Chris Feijoo <hello@kube.io>",
+  "authors": [
+    "Chris Feijoo <hello@kube.io>",
+    "Ben Lechiara <benjamin.lechiara@gmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
