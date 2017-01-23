@@ -10,6 +10,9 @@
 
 import { getAccessorChain } from './accessorChain'
 
+/**
+ * Type of target of an accessor function
+ */
 export type Target = string | number | boolean | {} | any[] | undefined | null
 
 /**
@@ -20,6 +23,7 @@ export const setFromAccessorChain =
     (value: T | ((_: T) => T)): R => {
 
       if (accessorChain.length === 0) {
+        // TODO: Check deepEqual to return same root if not modified
         if (value instanceof Function)
           return value(root as any) as any
         else
@@ -39,7 +43,6 @@ export const setFromAccessorChain =
  * Return a new tree with target key updated
  */
 export const set = <R, T extends Target>(root: R, accessor: (x: R) => T) =>
-  // TODO: Check deepEqual to return same root if not modified
   setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
 
 /**
