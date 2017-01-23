@@ -1,4 +1,4 @@
 /node_modules
 /lib
 /.vscode
-npm-debug.log
+npm-debug.log*
