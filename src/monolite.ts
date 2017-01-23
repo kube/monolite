@@ -43,8 +43,8 @@ export const set = <R, T extends Target>(root: R, accessor: (x: R) => T) =>
  * Return a new tree with applied modification on an array
  */
 export const setMap = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
-  (callback: ((_: T) => T)): R =>
-    set(root, accessor)(arr => arr.map(value => callback(value)))
+  (func: ((_: T) => T)): R =>
+    set(root, accessor)(arr => arr.map(func))
 
 /**
  * Return a new updated tree, with item appended to array
