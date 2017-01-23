@@ -11,15 +11,10 @@
 import { getAccessorChain } from './accessorChain'
 
 /**
- * Type of target of an accessor function
- */
-export type Target = string | number | boolean | {} | any[] | undefined | null
-
-/**
  * Return a new tree with target key updated
  */
 export const setFromAccessorChain =
-  <T extends Target, R>(root: R, accessorChain: string[]) =>
+  <T, R>(root: R, accessorChain: string[]) =>
     (value: T | ((_: T) => T)): R => {
 
       if (accessorChain.length === 0) {
@@ -42,26 +37,26 @@ export const setFromAccessorChain =
 /**
  * Return a new tree with target key updated
  */
-export const set = <R, T extends Target>(root: R, accessor: (x: R) => T) =>
+export const set = <R, T>(root: R, accessor: (_: R) => T) =>
   setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
 
 /**
  * Return a new tree with applied modification on an array
  */
-export const setMap = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
-  (func: ((_: T) => T)): R =>
+export const setMap = <R, T>(root: R, accessor: (_: R) => T[]) =>
+  (func: (_: T) => T): R =>
     set(root, accessor)(arr => arr.map(func))
 
 /**
  * Return a new updated tree, with item appended to array
  */
-export const setAppend = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
+export const setAppend = <R, T>(root: R, accessor: (_: R) => T[]) =>
   (item: T): R =>
     set(root, accessor)(arr => [...arr, item])
 
 /**
  * Return a new updated tree, with item prepended to array
  */
-export const setPrepend = <R, T extends Target>(root: R, accessor: (x: R) => T[]) =>
+export const setPrepend = <R, T>(root: R, accessor: (_: R) => T[]) =>
   (item: T): R =>
     set(root, accessor)(arr => [item, ...arr])
