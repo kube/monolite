@@ -43,7 +43,7 @@ describe('set', () => {
 
 describe('setMap', () => {
   it('return a new update tree, with modifications in an array ', () => {
-    const tree = {b: false, c: [true, true]}
+    const tree = { b: false, c: [true, true] }
     const updatedTree = setMap(tree, _ => _.c)(value => !value)
 
     expect(updatedTree).not.to.eql(tree)
@@ -55,7 +55,7 @@ describe('setMap', () => {
 
 describe('setAppend', () => {
   it('returns a new updated tree, with item appended to array', () => {
-    const tree = {arr: [1, 2]}
+    const tree = { arr: [1, 2] }
     const updatedTree = setAppend(tree, _ => _.arr)(3)
 
     expect(updatedTree).not.to.eql(tree)
@@ -67,7 +67,7 @@ describe('setAppend', () => {
 
 describe('setPrepend', () => {
   it('returns a new updated tree, with item prepended to array', () => {
-    const tree = {arr: [2, 3]}
+    const tree = { arr: [2, 3] }
     const updatedTree = setPrepend(tree, _ => _.arr)(1)
 
     expect(updatedTree).not.to.eql(tree)
