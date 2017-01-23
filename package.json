@@ -6,7 +6,8 @@
   "types": "lib/monolite.d.ts",
   "scripts": {
     "build": "gulp build",
-    "prepublish": "gulp",
+    "prepublish": "gulp && npm run flowgen",
+    "flowgen": "for file in lib/*.d.ts; do flowgen \"$file\" -o \"lib/`basename \"$file\" .d.ts`.flow.js\";done;",
     "test": "gulp"
   },
   "authors": [
@@ -22,6 +23,7 @@
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-latest": "^6.16.0",
     "chai": "^3.5.0",
+    "flowgen": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-mocha": "^3.0.1",
