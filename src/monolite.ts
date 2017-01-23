@@ -12,7 +12,10 @@ import { getAccessorChain } from './accessorChain'
 
 export type Target = string | number | boolean | {} | any[] | undefined | null
 
-const setFromAccessorChain =
+/**
+ * Return a new tree with target key updated
+ */
+export const setFromAccessorChain =
   <T extends Target, R>(root: R, accessorChain: string[]) =>
     (value: T | ((_: T) => T)): R => {
 
@@ -33,7 +36,7 @@ const setFromAccessorChain =
     }
 
 /**
- * Return a new tree with applied modification
+ * Return a new tree with target key updated
  */
 export const set = <R, T extends Target>(root: R, accessor: (x: R) => T) =>
   // TODO: Check deepEqual to return same root if not modified
