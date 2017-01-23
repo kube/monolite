@@ -19,6 +19,7 @@
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.36",
     "babel-cli": "^6.18.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-latest": "^6.16.0",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
