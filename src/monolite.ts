@@ -31,10 +31,10 @@ export const setFromAccessorChain =
       }
       else {
         const node = root as any
-        const key = accessorChain.shift()
+        const [key, ...accessors] = accessorChain
 
         return Object.assign({}, node, {
-          [key]: setFromAccessorChain(node[key], accessorChain)(value)
+          [key]: setFromAccessorChain(node[key], accessors)(value)
         })
       }
     }
