@@ -8,6 +8,7 @@
      ## ## ## :##
       ## ## ##*/
 
+import deepEqual from 'deep-equal'
 import { getAccessorChain } from './accessorChain'
 
 /**
@@ -16,25 +17,26 @@ import { getAccessorChain } from './accessorChain'
 export const setFromAccessorChain = <T, R>(root: R, accessors: string[]) =>
   (value: T | ((_: T) => T)): R => {
 
-    if (accessors.length === 0) {
-      // TODO: Check deepEqual to return same root if not modified
-      if (value instanceof Function)
-        return value(root as any) as any
-      else
-        return value as any
-    }
-    else {
-      const node = root as any
-      const [key, ...nextAccessors] = accessors
-      const newValue = setFromAccessorChain(node[key], nextAccessors)(value)
+    const currentNode: any = root
 
-      // If identity equality, return same tree
-      if (node[key] === newValue)
-        return node
-      else
-        return Object.assign({}, node, {
-          [key]: setFromAccessorChain(node[key], nextAccessors)(value)
-        })
+    if (accessors.length === 0) {
+      // currentNode is the target
+      const newNode: any =
+        value instanceof Function ? value(currentNode) : value
+
+      // Return currentNode if structural equality
+      return deepEqual(currentNode, newNode) ? currentNode : newNode
+    }
+
+    else {
+      // currentNode is a parent of the target
+      const [key, ...nextAccessors] = accessors
+      const newValue =
+        setFromAccessorChain(currentNode[key], nextAccessors)(value)
+
+      // Return currentNode if identity equality
+      return currentNode[key] === newValue ?
+        currentNode : Object.assign({}, currentNode, { [key]: newValue })
     }
   }
 

@@ -51,6 +51,12 @@ describe('set', () => {
     const updatedTree2 = set(tree2, _ => _.a.b)(tree2.a.b)
     expect(tree2).to.equal(updatedTree2)
   })
+
+  it('returns same tree if target structural equality', () => {
+    const tree = { a: { b: { c: 42 } } }
+    const updatedTree = set(tree, _ => _.a.b)({ c: 42 })
+    expect(tree).to.equal(updatedTree)
+  })
 })
 
 describe('setMap', () => {

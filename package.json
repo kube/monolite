@@ -15,9 +15,12 @@
     "Ben Lechiara <benjamin.lechiara@gmail.com>"
   ],
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "deep-equal": "^1.0.1"
+  },
   "devDependencies": {
     "@types/chai": "^3.4.34",
+    "@types/deep-equal": "^0.0.30",
     "@types/mocha": "^2.2.36",
     "babel-cli": "^6.18.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
