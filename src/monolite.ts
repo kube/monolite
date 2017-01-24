@@ -13,11 +13,10 @@ import { getAccessorChain } from './accessorChain'
 /**
  * Return a new tree with target key updated
  */
-export const setFromAccessorChain =
-  <T, R>(root: R, accessorChain: string[]) =>
+export const setFromAccessorChain = <T, R>(root: R, accessors: string[]) =>
     (value: T | ((_: T) => T)): R => {
 
-      if (accessorChain.length === 0) {
+      if (accessors.length === 0) {
         // TODO: Check deepEqual to return same root if not modified
         if (value instanceof Function)
           return value(root as any) as any
@@ -26,10 +25,10 @@ export const setFromAccessorChain =
       }
       else {
         const node = root as any
-        const [key, ...accessors] = accessorChain
+        const [key, ...nextAccessors] = accessors
 
         return Object.assign({}, node, {
-          [key]: setFromAccessorChain(node[key], accessors)(value)
+          [key]: setFromAccessorChain(node[key], nextAccessors)(value)
         })
       }
     }
