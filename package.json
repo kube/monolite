@@ -11,8 +11,8 @@
     "test": "gulp"
   },
   "authors": [
-    "Chris Feijoo <hello@kube.io>",
-    "Ben Lechiara <benjamin.lechiara@gmail.com>"
+    "Chris Feijoo [github.com/kube]",
+    "Ben Lechiara [github.com/corseman]"
   ],
   "license": "MIT",
   "dependencies": {
