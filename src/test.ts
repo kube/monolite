@@ -39,6 +39,18 @@ describe('set', () => {
     expect(tree.b.c).to.equal(true)
     expect(updatedTree.b.c).to.equal(false)
   })
+
+  it('returns same tree if target identity equality', () => {
+    // Pass the same primitive value as replacement
+    const tree = { a: { b: { c: 42 } } }
+    const updatedTree = set(tree, _ => _.a.b.c)(42)
+    expect(tree).to.equal(updatedTree)
+
+    // Pass the same subtree as replacement
+    const tree2 = { a: { b: { c: 42 } } }
+    const updatedTree2 = set(tree2, _ => _.a.b)(tree2.a.b)
+    expect(tree2).to.equal(updatedTree2)
+  })
 })
 
 describe('setMap', () => {
