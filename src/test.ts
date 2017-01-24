@@ -31,7 +31,7 @@ describe('set', () => {
     expect(updatedTree.b.c).to.equal(false)
   })
 
-  it('can take function as value', () => {
+  it('can take thunk as value', () => {
     const tree = { b: { c: true } }
     const updatedTree = set(tree, _ => _.b.c)(c => !c)
 
