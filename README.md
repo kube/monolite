@@ -3,6 +3,8 @@
 
 **Monolite** is a little JavaScript library that permits to modify a tree by stuctural-sharing preserving tree immutability.
 
+<img width=760 src="https://cloud.githubusercontent.com/assets/2991143/22441124/6636ceac-e736-11e6-88d1-621fe4d81304.gif" />
+
 ## Usage
 
 Consider a tree `summerTree` with two branches, and two leaves for each of its branches.
