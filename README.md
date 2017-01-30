@@ -1,9 +1,11 @@
 # Monolite
 ## Structural-sharing tree modifier
 
-**Monolite** is a little JavaScript library that permits to modify a tree by stuctural-sharing preserving tree immutability.
+**Monolite** is a JavaScript library permitting tree stuctural-sharing, preserving tree immutability.
 
-<img width=760 src="https://cloud.githubusercontent.com/assets/2991143/22441124/6636ceac-e736-11e6-88d1-621fe4d81304.gif" />
+It is written in TypeScript and provides **static analysis** and **completion**.
+
+<img width=670 src="https://cloud.githubusercontent.com/assets/2991143/22441124/6636ceac-e736-11e6-88d1-621fe4d81304.gif" />
 
 ## Usage
 
