@@ -3,7 +3,7 @@
 
 **Monolite** is a JavaScript library permitting tree stuctural-sharing, preserving tree immutability.
 
-It is written in TypeScript and provides **static analysis** and **completion**.
+It is written in TypeScript and provides **static analysis** and **completion**, by using accessor functions.
 
 <img width=670 src="https://cloud.githubusercontent.com/assets/2991143/22441124/6636ceac-e736-11e6-88d1-621fe4d81304.gif" />
 
