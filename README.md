@@ -7,6 +7,12 @@ It is written in TypeScript and provides **static analysis** and **completion**.
 
 <img width=670 src="https://cloud.githubusercontent.com/assets/2991143/22441124/6636ceac-e736-11e6-88d1-621fe4d81304.gif" />
 
+## Install
+
+```sh
+npm install --save monolite
+```
+
 ## Usage
 
 Consider a tree `summerTree` with two branches, and two leaves for each of its branches.
