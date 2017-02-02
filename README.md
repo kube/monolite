@@ -1,4 +1,8 @@
-# Monolite
+<h1>
+  <img alt"Monolite"
+    src="https://rawgithub.com/kube/monolite/master/logo.svg">
+</h1>
+
 ## Structural-sharing tree modifier
 
 **Monolite** is a JavaScript library permitting tree stuctural-sharing, preserving tree immutability.
