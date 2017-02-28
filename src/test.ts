@@ -57,6 +57,27 @@ describe('set', () => {
     const updatedTree = set(tree, _ => _.a.b)({ c: 42 })
     expect(tree).to.equal(updatedTree)
   })
+
+  it('does not transform arrays to objects', () => {
+    const tree = {
+      title: 'Hello',
+      subjects: [
+        { name: 'John', age: 26 },
+        { name: 'Marvin', age: 42 }
+      ]
+    }
+    const updatedTree = set(tree, _ => _.subjects[0].name)('Bobby')
+    expect(updatedTree.subjects).to.be.an('array')
+    expect(updatedTree.subjects.length).to.equal(2)
+    expect(updatedTree.subjects[0].name).to.equal('Bobby')
+    expect(updatedTree.subjects[1].name).to.equal('Marvin')
+
+    const updatedTree2 = set(tree, _ => _.subjects[1].name)('Bobby')
+    expect(updatedTree2.subjects).to.be.an('array')
+    expect(updatedTree2.subjects.length).to.equal(2)
+    expect(updatedTree2.subjects[0].name).to.equal('John')
+    expect(updatedTree2.subjects[1].name).to.equal('Bobby')
+  })
 })
 
 describe('setMap', () => {

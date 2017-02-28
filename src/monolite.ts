@@ -35,8 +35,15 @@ export const setFromAccessorChain = <T, R>(root: R, accessors: string[]) =>
         setFromAccessorChain(currentNode[key], nextAccessors)(value)
 
       // Return currentNode if identity equality
-      return currentNode[key] === newValue ?
-        currentNode : Object.assign({}, currentNode, { [key]: newValue })
+      return currentNode[key] === newValue
+        ? currentNode
+        : Array.isArray(currentNode)
+          ? [
+            ...currentNode.slice(0, Number(key)),
+            newValue,
+            ...currentNode.slice(Number(key) + 1),
+          ]
+          : Object.assign({}, currentNode, { [key]: newValue })
     }
   }
 
