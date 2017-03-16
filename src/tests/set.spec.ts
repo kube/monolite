@@ -75,3 +75,19 @@ it('does not transform arrays to objects', () => {
   expect(updatedTree2.subjects[0].name).toBe('John')
   expect(updatedTree2.subjects[1].name).toBe('Bobby')
 })
+
+it('preserves the prototype of the tree', () => {
+  const tree = Object.assign(Object.create({
+    a: 1, b: { c: 2 }
+  }), {
+    d: { e: 3 }
+  })
+
+  const updatedTree = set(tree, _ => _.d.e)(4)
+  expect(updatedTree.a).toBe(1)
+  expect(typeof updatedTree.b).toBe('object')
+  expect(updatedTree.b).toBe(tree.b)
+
+  const updatedTree2 = set(tree, _ => _.d.e)(3)
+  expect(updatedTree2).toBe(tree)
+})
