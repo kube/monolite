@@ -1,15 +1,13 @@
-<h1>
+<h1 align="center">
   <img alt"Monolite"
     src="https://rawgithub.com/kube/monolite/master/logo.svg">
 </h1>
 
-## Structural-sharing tree modifier
+<h3 align="center">Structural-sharing tree modifier. Statically-typed.</h3>
 
-**Monolite** is a JavaScript library permitting tree stuctural-sharing, preserving tree immutability.
-
-It is written in TypeScript and provides **static analysis** and **completion**, by using accessor functions.
-
-<img width=670 src="https://cloud.githubusercontent.com/assets/2991143/24072937/39ea6e0c-0bef-11e7-9b03-90a75268c565.gif" />
+<p align="center">
+  <img width=670 src="https://cloud.githubusercontent.com/assets/2991143/24072937/39ea6e0c-0bef-11e7-9b03-90a75268c565.gif" />
+</p>
 
 ## Install
 
