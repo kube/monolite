@@ -9,7 +9,7 @@
 
 It is written in TypeScript and provides **static analysis** and **completion**, by using accessor functions.
 
-<img width=670 src="https://cloud.githubusercontent.com/assets/2991143/22441124/6636ceac-e736-11e6-88d1-621fe4d81304.gif" />
+<img width=670 src="https://cloud.githubusercontent.com/assets/2991143/24072937/39ea6e0c-0bef-11e7-9b03-90a75268c565.gif" />
 
 ## Install
 
