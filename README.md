@@ -6,7 +6,7 @@
 <h3 align="center">Structural-sharing tree modifier. Statically-typed.</h3>
 
 <p align="center">
-  <img width=670 src="https://cloud.githubusercontent.com/assets/2991143/24072937/39ea6e0c-0bef-11e7-9b03-90a75268c565.gif" />
+  <img width=670 src="https://cloud.githubusercontent.com/assets/2991143/24076996/5d039210-0c3f-11e7-9df8-44d3ac93198f.gif" />
 </p>
 
 ## Install
