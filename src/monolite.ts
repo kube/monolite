@@ -25,7 +25,9 @@ export const setFromAccessorChain = <T, R>(root: R, accessors: string[]) =>
         value instanceof Function ? value(currentNode) : value
 
       // Return currentNode if structural equality
-      return deepEqual(currentNode, newNode) ? currentNode : newNode
+      return deepEqual(currentNode, newNode)
+        ? currentNode
+        : newNode
     }
 
     else {
