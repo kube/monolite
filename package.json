@@ -5,6 +5,7 @@
   "main": "lib/monolite.js",
   "types": "lib/monolite.d.ts",
   "scripts": {
+    "dev": "gulp dev",
     "build": "gulp build",
     "prepublish": "gulp && npm run flowgen",
     "flowgen": "for file in lib/*.d.ts; do flowgen \"$file\" -o \"lib/`basename \"$file\" .d.ts`.js.flow\";done;",
