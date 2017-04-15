@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/kube/monolite.svg?style=svg)](https://circleci.com/gh/kube/monolite)
+
 <h1 align="center">
   <img alt"Monolite"
     src="https://rawgithub.com/kube/monolite/master/logo.svg">
