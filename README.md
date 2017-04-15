@@ -23,27 +23,3 @@ yarn add monolite
 The main motivation of this library is to preserve static-typing, type-inference and completion provided by TypeScript, which is not supported by Immutable.js when working on trees.
 
 **Monolite** takes **Plain-Old JavaScript Objects** and returns **Plain-Old JavaScript Objects**. Accessors permit TypeScript to understand the types you're dealing with and to provide completion and linting as if you were working directly on these objects.
-
-
-## Development
-
-### Build
-The build process involves **TypeScript** and **Babel**.
-
-```sh
-yarn build
-```
-
-### Test
-Will run tests using **Mocha**.
-
-```sh
-yarn test
-```
-
-### Development mode
-Will **watch** source, build and run tests automatically on update.
-
-```sh
-yarn dev
-```
