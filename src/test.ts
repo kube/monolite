@@ -87,7 +87,6 @@ describe('setMap', () => {
 
     expect(updatedTree).not.to.eql(tree)
     expect(updatedTree).to.have.property('c')
-      .that.is.an('array')
       .to.be.eql([false, false])
   })
 })
@@ -109,7 +108,7 @@ describe('setPrepend', () => {
     const tree = { arr: [2, 3] }
     const updatedTree = setPrepend(tree, _ => _.arr)(1)
 
-    expect(updatedTree).not.to.eql(tree)
+    expect(updatedTree).not.to.equal(tree)
     expect(updatedTree).to.have.property('arr')
       .that.is.an('array')
       .to.be.eql([1, 2, 3])
