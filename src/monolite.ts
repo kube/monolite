@@ -8,7 +8,7 @@
      ## ## ## :##
       ## ## ##*/
 
-import deepEqual from 'deep-equal'
+import * as deepEqual from 'deep-equal'
 import { getAccessorChain } from './accessorChain'
 
 /**

@@ -5,12 +5,12 @@
   "main": "lib/monolite.js",
   "types": "lib/monolite.d.ts",
   "scripts": {
-    "dev": "gulp dev",
+    "dev": "jest --watch",
     "lint": "tslint -p .",
     "build": "gulp build",
     "prepublish": "gulp && npm run flowgen",
     "flowgen": "for file in lib/*.d.ts; do flowgen \"$file\" -o \"lib/`basename \"$file\" .d.ts`.js.flow\";done;",
-    "test": "gulp"
+    "test": "jest"
   },
   "authors": [
     "Chris Feijoo [github.com/kube]",
@@ -21,23 +21,29 @@
     "deep-equal": "^1.0.1"
   },
   "devDependencies": {
-    "@types/chai": "^3.4.34",
     "@types/deep-equal": "^0.0.30",
-    "@types/mocha": "^2.2.36",
-    "babel-cli": "^6.18.0",
+    "@types/jest": "^19.2.2",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-latest": "^6.16.0",
-    "chai": "^3.5.0",
     "flowgen": "^1.0.1",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-babel": "^6.1.2",
-    "gulp-mocha": "^3.0.1",
     "gulp-typescript": "^3.1.4",
+    "jest": "^19.0.2",
     "merge-stream": "^1.0.1",
     "mocha": "^3.2.0",
-    "path": "^0.12.7",
-    "run-sequence": "^1.2.2",
+    "ts-jest": "^19.0.9",
     "tslint": "^5.1.0",
     "typescript": "^2.1.4"
+  },
+  "jest": {
+    "transform": {
+      ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
   }
 }
