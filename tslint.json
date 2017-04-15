@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "max-line-length": [
+      true,
+      80
+    ],
+    "no-var-keyword": true,
+    "no-unused-expression": true,
+    "no-duplicate-variable": true,
+    "no-shadowed-variable": true,
+    "triple-equals": true,
+    "only-arrow-functions": [
+      true
+    ],
+    "semicolon": [
+      true,
+      "never"
+    ]
+  }
+}
