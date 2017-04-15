@@ -13,16 +13,16 @@ const path = require('path')
 const merge = require('merge-stream')
 const babel = require('gulp-babel')
 const mocha = require('gulp-mocha')
-const sequence = require('run-sequence')
 const typescript = require('gulp-typescript')
 
 const tsOptions = require('./tsconfig.json').compilerOptions
 const tsProject = typescript.createProject(tsOptions)
+const tsSources = path.join(tsOptions.rootDir, '*.ts')
 
 // Compile with Typescript and pipe to Babel
-gulp.task('build', () => {
+const build = () => {
   const tsResult =
-    gulp.src(path.join(tsOptions.rootDir, '*.ts'))
+    gulp.src(tsSources)
       .pipe(tsProject())
 
   return merge(
@@ -32,24 +32,18 @@ gulp.task('build', () => {
     tsResult.dts
       .pipe(gulp.dest(tsOptions.outDir))
   )
-})
+}
 
 // Run Mocha tests
-gulp.task('test', () =>
-  gulp.src(path.resolve(tsOptions.outDir, 'test.js'))
+const test = () =>
+  gulp.src(path.join(tsOptions.outDir, 'test.js'))
     .pipe(mocha())
-)
-
-// Build and run tests
-gulp.task('build+test', () =>
-  sequence('build', 'test')
-)
 
 // Watch mode for development
-gulp.task('dev', ['build+test'], () =>
-  gulp.watch(
-    path.resolve(tsOptions.rootDir, '**/*.ts'), ['build+test']
-  )
-)
+const watch = () =>
+  gulp.watch(tsSources, gulp.series(build, test))
 
-gulp.task('default', ['build+test'])
+gulp.task('build', build)
+gulp.task('test', test)
+gulp.task('default', gulp.series(build, test))
+gulp.task('dev', gulp.series(build, test, watch))
