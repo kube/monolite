@@ -75,3 +75,10 @@ export const setAppend = <R, T>(root: R, accessor: (_: R) => T[]) =>
 export const setPrepend = <R, T>(root: R, accessor: (_: R) => T[]) =>
   (item: T): R =>
     set(root, accessor)(arr => [item, ...arr])
+
+/**
+ * Return a new updated tree, with filtered array
+ */
+export const setFilter = <R, T>(root: R, accessor: (_: R) => T[]) =>
+  (predicate: (_: T) => boolean): R =>
+    set(root, accessor)(arr => arr.filter(predicate))

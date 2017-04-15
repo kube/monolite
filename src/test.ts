@@ -11,7 +11,7 @@
 import 'mocha'
 import { expect } from 'chai'
 import { getAccessorChain } from './accessorChain'
-import { set, setMap, setAppend, setPrepend } from './monolite'
+import { set, setMap, setAppend, setPrepend, setFilter } from './monolite'
 
 describe('getAccessorChain', () => {
   it('transforms accessor function in array of consecutive accessors', () => {
@@ -113,5 +113,14 @@ describe('setPrepend', () => {
     expect(updatedTree).to.have.property('arr')
       .that.is.an('array')
       .to.be.eql([1, 2, 3])
+  })
+})
+
+describe('setFilter', () => {
+  it('returns a new filtered array', () => {
+    const tree = { arr: [1, 2, 3, 4, 5, 6, 7] }
+    const updatedTree = setFilter(tree, _ => _.arr)(x => x % 2 === 0)
+
+    expect(updatedTree.arr).to.eql([2, 4, 6])
   })
 })
