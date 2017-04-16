@@ -8,7 +8,7 @@
     "dev": "jest --watch",
     "lint": "tslint -p .",
     "build": "gulp build",
-    "prepublish": "gulp build",
+    "prepublishOnly": "gulp build",
     "test": "jest"
   },
   "authors": [
