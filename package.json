@@ -8,8 +8,7 @@
     "dev": "jest --watch",
     "lint": "tslint -p .",
     "build": "gulp build",
-    "prepublish": "gulp && npm run flowgen",
-    "flowgen": "for file in lib/*.d.ts; do flowgen \"$file\" -o \"lib/`basename \"$file\" .d.ts`.js.flow\";done;",
+    "prepublish": "gulp build",
     "test": "jest"
   },
   "authors": [
@@ -25,9 +24,9 @@
     "@types/jest": "^19.2.2",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-latest": "^6.16.0",
-    "flowgen": "^1.0.1",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-babel": "^6.1.2",
+    "gulp-flowgen": "^0.0.3",
     "gulp-typescript": "^3.1.4",
     "jest": "^19.0.2",
     "merge-stream": "^1.0.1",
