@@ -1,6 +1,6 @@
 {
   "name": "monolite",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "Structural-sharing tree object modifier",
   "main": "lib/monolite.js",
   "types": "lib/monolite.d.ts",
@@ -16,11 +16,8 @@
     "Ben Lechiara [github.com/corseman]"
   ],
   "license": "MIT",
-  "dependencies": {
-    "deep-equal": "^1.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/deep-equal": "^0.0.30",
     "@types/jest": "^19.2.2",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-latest": "^6.16.0",
