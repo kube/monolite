@@ -1,8 +1,10 @@
-/.npmignore
-/.vscode
-/.editorconfig
-/yarn.lock
+.vscode/
+src/
+.editorconfig
 .babelrc
+circle.yml
 gulpfile.js
 tsconfig.json
-/src
+tslint.json
+yarn.lock
+**/*.svg
