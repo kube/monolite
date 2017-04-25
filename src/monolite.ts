@@ -52,8 +52,10 @@ export const setFromAccessorChain = <T, R>(root: R, accessors: string[]) =>
 /**
  * Return a new tree with target key updated
  */
-export const set = <R, T>(root: R, accessor: (_: R) => T) =>
-  setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
+export const set = <R, T>(root: R, accessor: ((_: R) => T) | string[]) =>
+  Array.isArray(accessor)
+    ? setFromAccessorChain<T, R>(root, accessor)
+    : setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
 
 /**
  * Return a new tree with applied modification on an array

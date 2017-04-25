@@ -10,6 +10,15 @@
 
 import { set } from '../monolite'
 
+it('should accept accessor chains', () => {
+  const tree = { b: { c: true }, d: { e: true } }
+  const updatedTree = set(tree, ['b', 'c'])(false)
+
+  expect(updatedTree).not.toBe(tree)
+  expect(tree.b.c).toBe(true)
+  expect(updatedTree.b.c).toBe(false)
+})
+
 it('returns a new updated tree', () => {
   const tree = { b: { c: true }, d: { e: true } }
   const updatedTree = set(tree, _ => _.b.c)(false)
