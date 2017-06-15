@@ -45,7 +45,10 @@ export const setFromAccessorChain = <T, R>(root: R, accessors: string[]) =>
             newValue,
             ...currentNode.slice(Number(key) + 1),
           ]
-          : Object.assign({}, currentNode, { [key]: newValue })
+          : Object.assign(
+            Object.create(Object.getPrototypeOf(currentNode)),
+            currentNode, { [key]: newValue }
+          )
     }
   }
 
