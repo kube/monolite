@@ -25,7 +25,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-flowgen": "^0.0.3",
     "gulp-typescript": "^3.1.4",
-    "jest": "^19.0.2",
+    "jest": "^22.0.4",
     "merge-stream": "^1.0.1",
     "ts-jest": "^19.0.9",
     "tslint": "^5.1.0",
