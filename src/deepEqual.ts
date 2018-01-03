@@ -41,6 +41,9 @@ const deepEqual = (a: any, b: any) => {
   if (typeof a !== typeof b)
     return false
 
+  if ((a === null || b === null) && a !== b)
+    return false
+
   if (Array.isArray(a))
     return arrayEqual(a, b)
 
