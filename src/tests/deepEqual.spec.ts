@@ -40,3 +40,11 @@ it('handles functions', () => {
   expect(deepEqual(a, b)).toBe(false)
   expect(deepEqual(a, a)).toBe(true)
 })
+
+it('handles null objects', () => {
+  expect(deepEqual(null, null)).toBe(true)
+  expect(deepEqual(null, 42)).toBe(false)
+  expect(deepEqual(null, '')).toBe(false)
+  expect(deepEqual(null, {})).toBe(false)
+  expect(deepEqual(null, { a: 42 })).toBe(false)
+})
