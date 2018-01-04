@@ -1,8 +1,4 @@
 {
-  "presets": [
-    "latest"
-  ],
-  "plugins": [
-    "transform-object-assign"
-  ]
+  "presets": ["latest"],
+  "plugins": ["transform-object-assign"]
 }

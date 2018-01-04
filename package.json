@@ -26,6 +26,7 @@
     "gulp-typescript": "^3.1.4",
     "jest": "^22.0.4",
     "merge-stream": "^1.0.1",
+    "prettier": "^1.9.2",
     "ts-jest": "^22.0.0",
     "tslint": "^5.1.0",
     "typescript": "^2.1.4"

@@ -58,10 +58,7 @@ it('returns same tree if target structural equality', () => {
 it('does not transform arrays to objects', () => {
   const tree = {
     title: 'Hello',
-    subjects: [
-      { name: 'John', age: 26 },
-      { name: 'Marvin', age: 42 }
-    ]
+    subjects: [{ name: 'John', age: 26 }, { name: 'Marvin', age: 42 }]
   }
   const updatedTree = set(tree, _ => _.subjects[0].name)('Bobby')
   expect(updatedTree.subjects).toBeInstanceOf(Array)
@@ -77,11 +74,15 @@ it('does not transform arrays to objects', () => {
 })
 
 it('preserves the prototype of the tree', () => {
-  const tree = Object.assign(Object.create({
-    a: 1, b: { c: 2 }
-  }), {
-    d: { e: 3 }
-  })
+  const tree = Object.assign(
+    Object.create({
+      a: 1,
+      b: { c: 2 }
+    }),
+    {
+      d: { e: 3 }
+    }
+  )
 
   const updatedTree = set(tree, _ => _.d.e)(4)
   expect(updatedTree.a).toBe(1)
