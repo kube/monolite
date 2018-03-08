@@ -1,11 +1,10 @@
-.vscode/
-src/
+/.circleci
+/.vscode
+/src
 .npmignore
 .editorconfig
-.babelrc
+.prettierrc
 circle.yml
-gulpfile.js
 tsconfig.json
-tslint.json
 yarn.lock
 **/*.svg
