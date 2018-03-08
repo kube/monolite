@@ -5,12 +5,9 @@
   "main": "lib/monolite.js",
   "types": "lib/monolite.d.ts",
   "scripts": {
-    "dev": "jest --watch",
-    "lint": "tslint -p .",
-    "build": "gulp build",
-    "precommit": "lint-staged",
-    "prepublishOnly": "gulp build",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.{ts,js,json}": [
@@ -25,22 +22,14 @@
     "Ben Lechiara [github.com/corseman]"
   ],
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^22.0.0",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-preset-latest": "^6.16.0",
-    "gulp": "gulpjs/gulp#4.0",
-    "gulp-babel": "^6.1.2",
-    "gulp-typescript": "^3.1.4",
     "husky": "^0.14.3",
     "jest": "^22.0.4",
     "kube-header": "^1.0.4",
     "lint-staged": "^6.0.0",
-    "merge-stream": "^1.0.1",
     "prettier": "^1.9.2",
     "ts-jest": "^22.0.0",
-    "tslint": "^5.1.0",
     "typescript": "^2.1.4"
   },
   "jest": {
