@@ -9,17 +9,15 @@
     "build": "tsc",
     "precommit": "lint-staged"
   },
-  "lint-staged": {
-    "*.{ts,js,json}": [
-      "prettier --write",
-      "header format --write",
-      "git add"
-    ],
-    "*.ts": ["tslint", "git add"]
-  },
   "authors": [
-    "Chris Feijoo [github.com/kube]",
-    "Ben Lechiara [github.com/corseman]"
+    {
+      "name": "Chris Feijoo",
+      "url": "https://github.com/kube"
+    },
+    {
+      "name": "Benjamin Lechiara",
+      "url": "https://github.com/corseman"
+    }
   ],
   "license": "MIT",
   "devDependencies": {
@@ -32,11 +30,18 @@
     "ts-jest": "^22.0.0",
     "typescript": "^2.1.4"
   },
+  "lint-staged": {
+    "*.{ts,js,json}": [
+      "prettier --write",
+      "header format --write",
+      "git add"
+    ]
+  },
   "jest": {
     "transform": {
       ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
+    "testRegex": "\\.spec\\.ts$",
     "moduleFileExtensions": ["ts", "js"]
   }
 }
