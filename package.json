@@ -21,14 +21,14 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "22.0.0",
+    "@types/jest": "22.2.0",
     "husky": "0.14.3",
-    "jest": "22.0.4",
-    "kube-header": "1.0.4",
-    "lint-staged": "6.0.0",
-    "prettier": "1.9.2",
-    "ts-jest": "22.0.0",
-    "typescript": "2.1.4"
+    "jest": "22.4.2",
+    "kube-header": "1.0.5",
+    "lint-staged": "7.0.0",
+    "prettier": "1.11.1",
+    "ts-jest": "22.4.1",
+    "typescript": "2.7.2"
   },
   "lint-staged": {
     "*.{ts,js,json}": [
