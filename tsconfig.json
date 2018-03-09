@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "es6",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": ["es5", "es2015.core"],
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "declaration": true,
