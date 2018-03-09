@@ -8,7 +8,8 @@
      ## ## ## :##
       ## ## ##*/
 
-import deepEqual from './deepEqual'
+import { assign } from './assign'
+import { deepEqual } from './deepEqual'
 import { getAccessorChain } from './accessorChain'
 
 /**
@@ -44,7 +45,7 @@ export const setFromAccessorChain = <T, R>(
             newValue,
             ...currentNode.slice(Number(key) + 1)
           ]
-        : Object.assign(
+        : assign(
             Object.create(Object.getPrototypeOf(currentNode)),
             currentNode,
             { [key]: newValue }

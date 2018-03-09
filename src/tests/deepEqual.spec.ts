@@ -8,7 +8,7 @@
      ## ## ## :##
       ## ## ##*/
 
-import deepEqual from '../deepEqual'
+import { deepEqual } from '../deepEqual'
 
 it('handles primitive types', () => {
   expect(deepEqual(1, 1)).toBe(true)

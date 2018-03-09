@@ -9,6 +9,7 @@
       ## ## ##*/
 
 import { set } from '../monolite'
+import { assign } from '../assign'
 
 it('should accept accessor chains', () => {
   const tree = { b: { c: true }, d: { e: true } }
@@ -74,7 +75,7 @@ it('does not transform arrays to objects', () => {
 })
 
 it('preserves the prototype of the tree', () => {
-  const tree = Object.assign(
+  const tree = assign(
     Object.create({
       a: 1,
       b: { c: 2 }

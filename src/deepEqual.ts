@@ -38,7 +38,7 @@ const objectEqual = (a: any, b: any) => {
   return true
 }
 
-const deepEqual = (a: any, b: any) => {
+export const deepEqual = (a: any, b: any) => {
   if (a === b) {
     return true
   }
@@ -56,5 +56,3 @@ const deepEqual = (a: any, b: any) => {
   }
   return a.valueOf() === b.valueOf()
 }
-
-export default deepEqual
