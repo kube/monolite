@@ -2,8 +2,8 @@
   "name": "monolite",
   "version": "0.5.1",
   "description": "Structural-sharing tree object modifier",
-  "main": "lib/monolite.js",
-  "types": "lib/monolite.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc",

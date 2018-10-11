@@ -8,7 +8,7 @@
      ## ## ## :##
       ## ## ##*/
 
-import { set } from '../monolite'
+import { set } from '..'
 import { assign } from '../assign'
 
 it('should accept accessor chains', () => {
