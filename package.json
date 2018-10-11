@@ -1,9 +1,9 @@
 {
   "name": "monolite",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Structural-sharing tree object modifier",
-  "main": "lib/monolite.js",
-  "types": "lib/monolite.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc",
@@ -21,30 +21,20 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "22.2.0",
-    "husky": "0.14.3",
-    "jest": "22.4.2",
+    "@types/jest": "^23.3.5",
+    "husky": "^1.1.2",
+    "jest": "^23.6.0",
     "kube-header": "1.0.5",
-    "lint-staged": "7.0.0",
-    "prettier": "1.11.1",
-    "ts-jest": "22.4.1",
-    "typescript": "2.7.2"
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3",
+    "ts-jest": "^23.10.4",
+    "typescript": "^3.1.2"
   },
   "lint-staged": {
     "*.{ts,js,json}": [
       "prettier --write",
       "header format --write",
       "git add"
-    ]
-  },
-  "jest": {
-    "transform": {
-      ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "\\.spec\\.ts$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
     ]
   }
 }

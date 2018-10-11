@@ -8,6 +8,8 @@
      ## ## ## :##
       ## ## ##*/
 
+import { AccessorFunction } from '.'
+
 /**
  * Return a Proxy that pushes accessors to accessorChain, recursively
  */
@@ -27,10 +29,10 @@ const createAccessorChainFiller = (accessorChain: string[]) => {
 }
 
 /**
- * Transform accessor expression to accessors chain
+ * Transform accessor function to accessor chain
  * e.g. (_ => _.a.b.c) will return ['a', 'b', 'c']
  */
-export const getAccessorChain = (accessor: (_: any) => any) => {
+export const getAccessorChain = (accessor: AccessorFunction) => {
   const accessorChain: string[] = []
   const accessorChainFiller = createAccessorChainFiller(accessorChain)
 
