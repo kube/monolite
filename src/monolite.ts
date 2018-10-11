@@ -63,32 +63,3 @@ export const set = <R, T>(
   Array.isArray(accessor)
     ? setFromAccessorChain<T, R>(root, accessor)
     : setFromAccessorChain<T, R>(root, getAccessorChain(accessor))
-
-/**
- * Return a new tree with applied modification on an array
- */
-export const setMap = <R, T>(root: R, accessor: (_: R) => T[]) => (
-  func: (_: T) => T
-) => set(root, accessor)(arr => arr.map(func))
-
-/**
- * Return a new updated tree, with item appended to array
- */
-export const setAppend = <R, T>(root: R, accessor: (_: R) => T[]) => (
-  item: T
-) => set(root, accessor)(arr => [...arr, item])
-
-/**
- * Return a new updated tree, with item prepended to array
- */
-export const setPrepend = <R, T>(
-  root: R,
-  accessor: (_: R) => T[]
-) => (item: T) => set(root, accessor)(arr => [item, ...arr])
-
-/**
- * Return a new updated tree, with filtered array
- */
-export const setFilter = <R, T>(root: R, accessor: (_: R) => T[]) => (
-  predicate: (_: T) => boolean
-) => set(root, accessor)(arr => arr.filter(predicate))
