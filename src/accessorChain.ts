@@ -8,7 +8,7 @@
      ## ## ## :##
       ## ## ##*/
 
-import { AccessorFunction } from '.'
+import { AccessorFunction } from './set'
 
 /**
  * Return a Proxy that pushes accessors to accessorChain, recursively
