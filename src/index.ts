@@ -12,6 +12,8 @@ import { assign } from './assign'
 import { deepEqual } from './deepEqual'
 import { getAccessorChain } from './accessorChain'
 
+export * from './pipe'
+
 export type AccessorChain = (string | number)[]
 export type AccessorFunction<R = any, T = any> = (root: R) => T
 export type Accessor<R, T = any> =
