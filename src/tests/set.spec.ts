@@ -8,7 +8,7 @@
      ## ## ## :##
       ## ## ##*/
 
-import { set } from '..'
+import { set } from '../set'
 import { assign } from '../assign'
 
 it('should accept accessor chains', () => {
