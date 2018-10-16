@@ -8,7 +8,4 @@
      ## ## ## :##
       ## ## ##*/
 
-import { set } from './set'
-import { pipe } from './pipe'
-
-export { set, pipe }
+export { set } from './set'
