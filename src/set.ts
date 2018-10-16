@@ -43,11 +43,17 @@ export function set<R, T, A extends AccessorChain>(
   value: ValueTransformer<A>
 ): R
 
+export function set<R>(root: R): Pipe<R>
+
 export function set<R, T, A extends Accessor<R, T>>(
   root: R,
-  accessor: A,
-  value: ValueTransformer<A>
-): R {
+  accessor?: A,
+  value?: ValueTransformer<A>
+): R | Pipe<R> {
+  if (typeof accessor === 'undefined') {
+    return pipe(root)
+  }
+
   const accessorChain =
     typeof accessor === 'function'
       ? getAccessorChain(accessor as AccessorFunction<R>)
@@ -81,5 +87,23 @@ export function set<R, T, A extends Accessor<R, T>>(
             currentNode,
             { [key]: newValue }
           )
+  }
+}
+
+type Pipe<R> = {
+  set: <T, A extends AccessorFunction<R, T>>(
+    accessor: A,
+    value: ValueTransformer<A>
+  ) => Pipe<R>
+  end: () => R
+}
+
+function pipe<R>(input: R): Pipe<R> {
+  return {
+    set: <T, A extends AccessorFunction<R, T>>(
+      accessor: A,
+      value: ValueTransformer<A>
+    ) => pipe(set(input, accessor, value)),
+    end: () => input
   }
 }
