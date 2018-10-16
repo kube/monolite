@@ -4,6 +4,7 @@
     "moduleResolution": "node",
     "target": "es5",
     "lib": ["es5", "es2015.core", "es2015.proxy"],
+    "strict": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "declaration": true,

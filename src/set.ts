@@ -8,9 +8,9 @@
      ## ## ## :##
       ## ## ##*/
 
-import { assign } from './assign'
-import { deepEqual } from './deepEqual'
 import { getAccessorChain } from './accessorChain'
+import { SetFluent } from './SetFluent'
+import { setFromAccessorChain } from './setFromAccessorChain'
 
 export type AccessorChain = (string | number)[]
 export type AccessorFunction<R = any, T = any> = (root: R) => T
@@ -29,7 +29,7 @@ export type ValueTransformer<A extends Accessor<any>> =
   | ((value: AccessorTargetType<A>) => AccessorTargetType<A>)
 
 /**
- * Return a new tree with target key updated
+ * Return an updated tree using accessor function
  */
 export function set<R, T, A extends AccessorFunction<R, T>>(
   root: R,
@@ -37,49 +37,45 @@ export function set<R, T, A extends AccessorFunction<R, T>>(
   value: ValueTransformer<A>
 ): R
 
+/**
+ * Return an updated tree using accessor chain
+ */
 export function set<R, T, A extends AccessorChain>(
   root: R,
   accessor: A,
   value: ValueTransformer<A>
 ): R
 
+/**
+ * Return an updated tree using accessor
+ */
 export function set<R, T, A extends Accessor<R, T>>(
   root: R,
   accessor: A,
   value: ValueTransformer<A>
-): R {
-  const accessorChain =
-    typeof accessor === 'function'
-      ? getAccessorChain(accessor as AccessorFunction<R>)
-      : (accessor as AccessorChain)
+): R
 
-  const currentNode: any = root
+/**
+ * Update immutable tree using fluent Api
+ */
+export function set<R>(root: R): SetFluent<R>
 
-  if (accessorChain.length === 0) {
-    // currentNode is the target
-    const newNode: any =
-      value instanceof Function ? value(currentNode) : value
-
-    // Return currentNode if structural equality
-    return deepEqual(currentNode, newNode) ? currentNode : newNode
+export function set<R, T, A extends Accessor<R, T>>(
+  root: R,
+  accessor?: A,
+  value?: ValueTransformer<A>
+): R | SetFluent<R> {
+  if (typeof accessor === 'undefined') {
+    // If only passed the root return the fluent set api
+    return new SetFluent(root)
   } else {
-    // currentNode is a parent of the target
-    const [key, ...nextAccessors] = accessorChain
-    const newValue = set(currentNode[key], nextAccessors, value)
-
-    // Return currentNode if identity equality
-    return currentNode[key] === newValue
-      ? currentNode
-      : Array.isArray(currentNode)
-        ? [
-            ...currentNode.slice(0, Number(key)),
-            newValue,
-            ...currentNode.slice(Number(key) + 1)
-          ]
-        : assign(
-            Object.create(Object.getPrototypeOf(currentNode)),
-            currentNode,
-            { [key]: newValue }
-          )
+    // Else return an updated tree
+    return setFromAccessorChain(
+      root,
+      typeof accessor === 'function'
+        ? getAccessorChain(accessor as AccessorFunction<R>)
+        : (accessor as AccessorChain),
+      value
+    )
   }
 }
