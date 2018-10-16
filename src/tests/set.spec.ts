@@ -11,7 +11,7 @@
 import { set } from '../set'
 import { assign } from '../assign'
 
-it('should accept accessor chains', () => {
+it('accepts accessor chain', () => {
   const tree = { b: { c: true }, d: { e: true } }
   const updatedTree = set(tree, ['b', 'c'], false)
 
@@ -94,26 +94,13 @@ it('preserves the prototype of the tree', () => {
   expect(updatedTree2).toBe(tree)
 })
 
-it('can chain transformations', () => {
-  type State = {
-    a: {
-      b: { c: number }
-      d: { e: string }
-    }
-  }
-
-  const state: State = {
-    a: {
-      b: { c: 42 },
-      d: { e: 'Hello!' }
-    }
-  }
+it('exposes fluent style api', () => {
+  type State = { a: { b: { c: number } } }
+  const state: State = { a: { b: { c: 42 } } }
 
   const updatedState = set(state)
-    .set(_ => _.a.b.c, value => value / 2 + 1)
-    .set(_ => _.a.d.e, word => word + '!')
+    .set(_ => _.a.b.c, x => x / 2 + 1)
     .end()
 
   expect(updatedState.a.b.c).toBe(22)
-  expect(updatedState.a.d.e).toBe('Hello!!')
 })
