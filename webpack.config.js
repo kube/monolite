@@ -36,7 +36,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts']
   },
   plugins: [
     new DefinitionBundlePlugin({
