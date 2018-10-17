@@ -9,6 +9,7 @@
       ## ## ##*/
 
 const { join } = require('path')
+const DefinitionBundlePlugin = require('dts-bundle-webpack')
 
 const PROJECT_ROOT = __dirname
 const SOURCES_ROOT = join(PROJECT_ROOT, 'src')
@@ -36,5 +37,13 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js']
-  }
+  },
+  plugins: [
+    new DefinitionBundlePlugin({
+      name: 'monolite',
+      removeSource: true,
+      main: join(BUILD_FOLDER, 'index.d.ts'),
+      out: join(BUILD_FOLDER, 'index.d.ts')
+    })
+  ]
 }
