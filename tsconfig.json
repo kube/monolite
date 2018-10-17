@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "target": "es5",
     "lib": ["es5", "es2015.core", "es2015.proxy"],
     "strict": true,
     "noImplicitAny": true,
