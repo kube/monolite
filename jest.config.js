@@ -13,7 +13,7 @@
  */
 module.exports = {
   transform: {
-    '.ts': require.resolve('ts-jest/preprocessor.js')
+    '.ts': 'ts-jest'
   },
   testRegex: '\\.spec\\.ts$',
   moduleFileExtensions: ['ts', 'js']
