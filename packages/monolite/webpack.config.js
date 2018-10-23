@@ -13,8 +13,7 @@ const DefinitionBundlePlugin = require('dts-bundle-webpack')
 
 const BUNDLE_NAME = 'monolite'
 const PROJECT_ROOT = join(__dirname, '../..')
-const PACKAGES_ROOT = join(PROJECT_ROOT, 'packages')
-const SOURCES_ROOT = join(PACKAGES_ROOT, BUNDLE_NAME, 'src')
+const SOURCES_ROOT = join(__dirname, 'src')
 const BUILD_FOLDER = join(PROJECT_ROOT, 'lib', BUNDLE_NAME)
 
 /**

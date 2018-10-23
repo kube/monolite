@@ -9,7 +9,6 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "declaration": true,
-    "removeComments": true,
     "rootDir": "src",
     "outDir": "../../lib/monolite"
   }
