@@ -12,5 +12,9 @@
  * @type {jest.InitialOptions}
  */
 module.exports = {
-  projects: ['<rootDir>/packages/*']
+  transform: {
+    '.ts': 'ts-jest'
+  },
+  testRegex: '\\.spec\\.ts$',
+  moduleFileExtensions: ['ts', 'js']
 }

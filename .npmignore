@@ -1,10 +1,12 @@
 /.circleci
 /.vscode
-/src
+/packages
 .npmignore
 .editorconfig
 .prettierrc
+jest.config.js
 circle.yml
 tsconfig.json
+webpack.config.js
 yarn.lock
 **/*.svg

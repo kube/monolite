@@ -1,9 +1,9 @@
 {
   "name": "monolite",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "Structural-sharing tree object modifier",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/monolite/index.js",
+  "types": "lib/monolite/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "webpack",
@@ -21,9 +21,14 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/traverse": "^7.1.4",
+    "@babel/types": "^7.1.3",
+    "@types/babel__core": "^7.0.1",
+    "@types/babel__traverse": "^7.0.0",
     "@types/jest": "^23.3.5",
     "@types/webpack": "^4.4.17",
-    "dts-bundle-webpack": "^1.0.0",
+    "dts-bundle-webpack": "^1.0.1",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
     "kube-header": "1.0.5",
