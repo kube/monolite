@@ -38,24 +38,6 @@ export function set<R, T, A extends AccessorFunction<R, T>>(
 ): R
 
 /**
- * Return an updated tree using accessor chain
- */
-export function set<R, T, A extends AccessorChain>(
-  root: R,
-  accessor: A,
-  value: ValueTransformer<A>
-): R
-
-/**
- * Return an updated tree using accessor
- */
-export function set<R, T, A extends Accessor<R, T>>(
-  root: R,
-  accessor: A,
-  value: ValueTransformer<A>
-): R
-
-/**
  * Update immutable tree using fluent Api
  */
 export function set<R>(root: R): SetFluent<R>
@@ -64,13 +46,13 @@ export function set<R, T, A extends Accessor<R, T>>(
   root: R,
   ...args: (A | ValueTransformer<A>)[]
 ): R | SetFluent<R> {
-  const [accessor, value] = args
-
-  if (typeof accessor === 'undefined') {
+  if (args.length === 0) {
     // If only passed the root return the fluent set api
     return new SetFluent(root)
   } else {
     // Else return an updated tree
+    const [accessor, value] = args
+
     return setFromAccessorChain(
       root,
       typeof accessor === 'function'
