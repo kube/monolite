@@ -62,9 +62,10 @@ export function set<R>(root: R): SetFluent<R>
 
 export function set<R, T, A extends Accessor<R, T>>(
   root: R,
-  accessor?: A,
-  value?: ValueTransformer<A>
+  ...args: (A | ValueTransformer<A>)[]
 ): R | SetFluent<R> {
+  const [accessor, value] = args
+
   if (typeof accessor === 'undefined') {
     // If only passed the root return the fluent set api
     return new SetFluent(root)
