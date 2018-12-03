@@ -8,7 +8,7 @@
 <h3 align="center">Type-safe structural-sharing tree modifier.</h3>
 
 <p align="center">
-  <img width=670 src="https://user-images.githubusercontent.com/2991143/49379796-4b51f580-f710-11e8-87f7-83b390e37822.gif" />
+  <img width=670 src="https://user-images.githubusercontent.com/2991143/49388567-7e05e900-f724-11e8-82fd-1e19c53baaea.gif" />
 </p>
 
 ## Install
