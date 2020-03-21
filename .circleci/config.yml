@@ -8,7 +8,7 @@
      ## ## ## :##
       ## ## ##."
 
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -21,7 +21,7 @@ jobs:
 
       - restore_cache:
           keys:
-          - dependencies-cache-{{ checksum "package.json" }}
+            - dependencies-cache-{{ checksum "package.json" }}
 
       - run: yarn
 
