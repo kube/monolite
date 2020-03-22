@@ -139,6 +139,7 @@ jobs:
         # if: steps.check.outputs.changed == 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: workspaces/${{ matrix.workspace }}
         run: |
           yarn config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
           yarn config set scope "<@OWNER>"
