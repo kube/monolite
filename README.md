@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/kube/monolite.svg?style=svg)](https://circleci.com/gh/kube/monolite)
+![](https://github.com/actions/hello-world/workflows/.github/workflows/test.yml/badge.svg)
 
 <h1 align="center">
   <img alt"Monolite"
@@ -23,7 +23,7 @@ Monolite by default makes usage of ES2015 `Proxy`, which permits to transform ac
 
 ```js
 // Using accessor function
-set(state, _ => _.nested.prop, 42)
+set(state, (_) => _.nested.prop, 42)
 
 // Using accessor chain
 set(state, ['nested', 'prop'], 42)
@@ -36,12 +36,12 @@ To target older runtimes, which do not support `Proxy`, a Babel plugin, bundled 
 In **babel.config.js**, simply add:
 
 ```js
-module.exports = api => {
+module.exports = (api) => {
   return {
     presets: [
       // ...
     ],
-    plugins: ['monolite/plugin/babel']
+    plugins: ['monolite/plugin/babel'],
   }
 }
 ```
