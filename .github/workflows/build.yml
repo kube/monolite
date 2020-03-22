@@ -42,6 +42,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
 
   test:
     name: Test
