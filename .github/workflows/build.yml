@@ -91,11 +91,17 @@ jobs:
 
       - run: yarn build
 
-      - name: Persist dist
+      - name: Persist lib
         uses: actions/upload-artifact@v1
         with:
-          name: dist
-          path: dist
+          name: lib
+          path: lib
+
+      - name: Persist plugin
+        uses: actions/upload-artifact@v1
+        with:
+          name: plugin
+          path: plugin
 
   publish:
     name: Publish to NPM
@@ -110,11 +116,17 @@ jobs:
         with:
           ref: master
 
-      - name: Load dist
+      - name: Load lib
         uses: actions/download-artifact@v1
         with:
-          name: dist
-          path: dist
+          name: lib
+          path: lib
+
+      - name: Load plugin
+        uses: actions/download-artifact@v1
+        with:
+          name: plugin
+          path: plugin
 
       - name: Check version changes
         id: check
