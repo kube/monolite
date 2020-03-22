@@ -1,4 +1,4 @@
-![](https://github.com/kube/monolite/workflows/Build/badge.svg)
+![https://github.com/kube/monolite/actions?query=workflow%3ABuild+branch%3Amaster](https://github.com/kube/monolite/workflows/Build/badge.svg)
 
 <h1 align="center">
   <img alt"Monolite"
@@ -29,7 +29,7 @@ set(state, (_) => _.nested.prop, 42)
 set(state, ['nested', 'prop'], 42)
 ```
 
-To target older runtimes, which do not support `Proxy`, a Babel plugin, bundled with the library, permits to do these transformations statically, at compile-time.
+To target older runtimes, which do not support `Proxy`, a Babel plugin is available, doing these transformations statically, at compile-time.
 
 ### Setup
 
@@ -41,7 +41,7 @@ module.exports = (api) => {
     presets: [
       // ...
     ],
-    plugins: ['monolite/plugin/babel'],
+    plugins: ['babel-plugin-monolite'],
   }
 }
 ```
