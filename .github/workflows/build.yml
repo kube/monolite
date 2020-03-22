@@ -141,7 +141,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         working-directory: workspaces/${{ matrix.workspace }}
         run: |
-          yarn config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-          yarn config set scope "<@OWNER>"
-          yarn config list
-          yarn publish --access public
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm config set scope "<@OWNER>"
+          npm config list
+          npm publish --access public
