@@ -18,7 +18,7 @@ const setInObject = <O extends {}, K extends keyof O, V extends O[K]>(
   value: V
 ) =>
   assign(Object.create(Object.getPrototypeOf(object)), object, {
-    [key]: value
+    [key]: value,
   })
 
 const setInArray = <V>(
@@ -28,7 +28,7 @@ const setInArray = <V>(
 ) => [
   ...array.slice(0, Number(index)),
   value,
-  ...array.slice(Number(index) + 1)
+  ...array.slice(Number(index) + 1),
 ]
 
 export function setFromAccessorChain<
@@ -55,7 +55,7 @@ export function setFromAccessorChain<
     return root[key] === newValue
       ? root
       : Array.isArray(root)
-        ? setInArray(root, key, newValue)
-        : setInObject(root, key, newValue)
+      ? setInArray(root, key, newValue)
+      : setInObject(root, key, newValue)
   }
 }

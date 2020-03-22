@@ -12,7 +12,7 @@ import { transform } from '@babel/core'
 import monolitePlugin from '../plugin'
 
 const BABEL_OPTIONS = {
-  plugins: [monolitePlugin]
+  plugins: [monolitePlugin],
 }
 
 it(`can take identifier accessors`, () => {
@@ -23,7 +23,7 @@ set(state, _ => _.a.b.c, 42);`
 set(state, ["a", "b", "c"], 42);`
 
   const result = transform(source, {
-    plugins: [monolitePlugin]
+    plugins: [monolitePlugin],
   })
 
   expect(result!.code).toBe(expected)
@@ -49,7 +49,7 @@ set(state, _ => _['a'].b[c], 42);`
 set(state, ['a', "b", c], 42);`
 
   const result = transform(source, {
-    plugins: [monolitePlugin]
+    plugins: [monolitePlugin],
   })
 
   expect(result!.code).toBe(expected)

@@ -13,7 +13,7 @@ import {
   Accessor,
   AccessorFunction,
   AccessorChain,
-  ValueTransformer
+  ValueTransformer,
 } from './set'
 
 export class SetFluent<R> {

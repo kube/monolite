@@ -15,7 +15,7 @@ import {
   CallExpression,
   MemberExpression,
   ArrowFunctionExpression,
-  Identifier
+  Identifier,
 } from '@babel/types'
 import * as types from '@babel/types'
 
@@ -69,7 +69,7 @@ const transformClassicalSet = (path: NodePath<CallExpression>) => {
   const [
     rootObject,
     accessorFunction,
-    valueTransformer
+    valueTransformer,
   ] = path.node.arguments
 
   if (
@@ -81,9 +81,9 @@ const transformClassicalSet = (path: NodePath<CallExpression>) => {
     return
   }
 
-  checkAccessorFunction(path.get('arguments.1') as NodePath<
-    ArrowFunctionExpression
-  >)
+  checkAccessorFunction(
+    path.get('arguments.1') as NodePath<ArrowFunctionExpression>
+  )
 
   path.replaceWith(
     types.callExpression(path.node.callee, [
@@ -91,7 +91,7 @@ const transformClassicalSet = (path: NodePath<CallExpression>) => {
       types.arrayExpression(
         getAccessorChainFromFunction(accessorFunction.body)
       ),
-      valueTransformer
+      valueTransformer,
     ])
   )
 }
@@ -155,7 +155,7 @@ const transformFluentSetRecursively = (
     ) {
       const [
         accessorFunction,
-        valueTransformer
+        valueTransformer,
       ] = callExprPath.node.arguments
 
       if (
@@ -163,16 +163,18 @@ const transformFluentSetRecursively = (
         accessorFunction.type === 'ArrowFunctionExpression' &&
         accessorFunction.body.type === 'MemberExpression'
       ) {
-        checkAccessorFunction(callExprPath.get(
-          'arguments.0'
-        ) as NodePath<ArrowFunctionExpression>)
+        checkAccessorFunction(
+          callExprPath.get('arguments.0') as NodePath<
+            ArrowFunctionExpression
+          >
+        )
 
         callExprPath.replaceWith(
           types.callExpression(callExprPath.node.callee, [
             types.arrayExpression(
               getAccessorChainFromFunction(accessorFunction.body)
             ),
-            valueTransformer
+            valueTransformer,
           ])
         )
       }
@@ -201,8 +203,8 @@ const monolitePlugin = (): PluginObj => ({
         // e.g. set(state, _ => _.prop, value)
         transformClassicalSet(path)
       }
-    }
-  }
+    },
+  },
 })
 
 export default monolitePlugin

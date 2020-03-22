@@ -22,7 +22,7 @@ const createAccessorChainFiller = (accessorChain: string[]) => {
         accessorChain.push(name)
         // Fill accessors recursively
         return fillerProxy
-      }
+      },
     }
   )
   return fillerProxy

@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [10.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -65,7 +65,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn test
+      - run: yarn workspaces run test
 
   build:
     name: Build
@@ -74,7 +74,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [10.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -89,7 +89,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn build
+      - run: yarn workspaces run build
 
       - name: Persist lib
         uses: actions/upload-artifact@v1
@@ -141,7 +141,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-          npm config set scope "<@OWNER>"
-          npm config list
-          npm publish --access public
+          yarn config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          yarn config set scope "<@OWNER>"
+          yarn config list
+          yarn publish --access public

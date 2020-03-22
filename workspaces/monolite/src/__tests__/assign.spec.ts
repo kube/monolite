@@ -21,7 +21,7 @@ it('copies all properties in a target object', () => {
 it('only copies own properties', () => {
   const prototype = { a: 42 }
   const source = Object.create(prototype, {
-    b: { enumerable: true, value: 'Hello' }
+    b: { enumerable: true, value: 'Hello' },
   })
 
   const clone = assign({}, source)

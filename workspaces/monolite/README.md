@@ -1,5 +1,3 @@
-![https://github.com/kube/monolite/actions?query=workflow%3ABuild+branch%3Amaster](https://github.com/kube/monolite/workflows/Build/badge.svg)
-
 <h1 align="center">
   <img alt"Monolite"
     src="https://rawgithub.com/kube/monolite/master/logo.svg">
@@ -16,6 +14,41 @@
 ```sh
 yarn add monolite
 ```
+
+## Babel Plugin
+
+Monolite by default makes usage of ES2015 `Proxy`, which permits to transform accessor functions to accessor chains.
+
+```js
+// Using accessor function
+set(state, (_) => _.nested.prop, 42)
+
+// Using accessor chain
+set(state, ['nested', 'prop'], 42)
+```
+
+To target older runtimes, which do not support `Proxy`, a Babel plugin is available, doing these transformations statically, at compile-time.
+
+### Setup
+
+```sh
+yarn add --dev babel-plugin-monolite
+```
+
+In **babel.config.js**, simply add:
+
+```js
+module.exports = (api) => {
+  return {
+    presets: [
+      // ...
+    ],
+    plugins: ['babel-plugin-monolite'],
+  }
+}
+```
+
+Voilà, all your accessor functions will be transformed to accessor chains during transpilation.
 
 ## TypeScript
 
