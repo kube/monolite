@@ -12,9 +12,7 @@
  * @type {jest.InitialOptions}
  */
 module.exports = {
-  transform: {
-    '.ts': 'ts-jest'
-  },
+  preset: 'ts-jest/presets/default',
   testRegex: '\\.spec\\.ts$',
-  moduleFileExtensions: ['ts', 'js']
+  moduleFileExtensions: ['ts', 'js'],
 }
