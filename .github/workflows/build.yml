@@ -99,7 +99,7 @@ jobs:
       - name: Persist dist directory
         uses: actions/upload-artifact@v1
         with:
-          name: workspaces/${{ matrix.workspace }}/dist
+          name: ${{ matrix.workspace }}-dist
           path: workspaces/${{ matrix.workspace }}/dist
 
   publish:
@@ -122,7 +122,7 @@ jobs:
       - name: Load dist directory
         uses: actions/download-artifact@v1
         with:
-          name: workspaces/${{ matrix.workspace }}/dist
+          name: ${{ matrix.workspace }}-dist
           path: workspaces/${{ matrix.workspace }}/dist
 
       - name: Check version update
