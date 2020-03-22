@@ -106,7 +106,7 @@ jobs:
   publish:
     name: Publish to NPM
     runs-on: ubuntu-latest
-    needs: build
+    needs: [test, build]
 
     if: github.ref == 'refs/heads/master'
 
