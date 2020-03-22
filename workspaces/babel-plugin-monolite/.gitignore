@@ -1,0 +1,5 @@
+dist/
+jest.config.js
+tsconfig.json
+webpack.config.js
+**/*.svg

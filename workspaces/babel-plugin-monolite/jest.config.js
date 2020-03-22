@@ -13,8 +13,8 @@
  */
 module.exports = {
   transform: {
-    '.ts': 'ts-jest'
+    '.ts': 'ts-jest',
   },
   testRegex: '\\.spec\\.ts$',
-  moduleFileExtensions: ['ts', 'js']
+  moduleFileExtensions: ['ts', 'js'],
 }

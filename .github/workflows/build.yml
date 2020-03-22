@@ -19,11 +19,11 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -42,6 +42,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
 
   test:
     name: Test
@@ -50,11 +51,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        workspace: [monolite, babel-plugin-monolite]
+        node-version: [10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -66,6 +68,8 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
       - run: yarn test
+        name: Test ${{ matrix.workspace }}
+        working-directory: workspaces/${{ matrix.workspace }}
 
   build:
     name: Build
@@ -74,11 +78,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        workspace: [monolite, babel-plugin-monolite]
+        node-version: [10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -90,18 +95,13 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
       - run: yarn build
+        working-directory: workspaces/${{ matrix.workspace }}
 
-      - name: Persist lib
+      - name: Persist dist directory
         uses: actions/upload-artifact@v1
         with:
-          name: lib
-          path: lib
-
-      - name: Persist plugin
-        uses: actions/upload-artifact@v1
-        with:
-          name: plugin
-          path: plugin
+          name: ${{ matrix.workspace }}-dist
+          path: workspaces/${{ matrix.workspace }}/dist
 
   publish:
     name: Publish to NPM
@@ -110,36 +110,37 @@ jobs:
 
     if: github.ref == 'refs/heads/master'
 
+    strategy:
+      matrix:
+        workspace: [monolite, babel-plugin-monolite]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: ${{ github.ref }}
 
-      - name: Load lib
+      - name: Load dist directory
         uses: actions/download-artifact@v1
         with:
-          name: lib
-          path: lib
+          name: ${{ matrix.workspace }}-dist
+          path: workspaces/${{ matrix.workspace }}/dist
 
-      - name: Load plugin
-        uses: actions/download-artifact@v1
-        with:
-          name: plugin
-          path: plugin
-
-      - name: Check version changes
+      - name: Check version update
         id: check
         uses: EndBug/version-check@v1
+        with:
+          file-name: workspaces/${{ matrix.workspace }}/package.json
 
       - name: Version update detected
         if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+        run: 'echo "Version update found: New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
 
       - name: Publish package to NPM
         if: steps.check.outputs.changed == 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: workspaces/${{ matrix.workspace }}
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
           npm config set scope "<@OWNER>"

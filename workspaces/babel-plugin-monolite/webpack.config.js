@@ -10,10 +10,9 @@
 
 const { join } = require('path')
 
-const BUNDLE_NAME = 'babel'
-const PROJECT_ROOT = join(__dirname, '../..')
+const PROJECT_ROOT = __dirname
 const SOURCES_ROOT = join(__dirname, 'src')
-const BUILD_FOLDER = join(PROJECT_ROOT, 'plugin', BUNDLE_NAME)
+const BUILD_FOLDER = join(PROJECT_ROOT, 'dist')
 
 /**
  * @type {import('webpack').Configuration}
@@ -24,18 +23,17 @@ module.exports = {
   entry: join(SOURCES_ROOT, 'plugin.ts'),
   output: {
     path: BUILD_FOLDER,
-    filename: 'index.js',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
       {
         test: /\.ts$/,
-        loader: 'ts-loader'
-      }
-    ]
+        loader: 'ts-loader',
+      },
+    ],
   },
   resolve: {
-    extensions: ['.ts', '.js']
-  }
+    extensions: ['.ts', '.js'],
+  },
 }

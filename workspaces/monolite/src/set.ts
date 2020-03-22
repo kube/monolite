@@ -22,7 +22,9 @@ export type AccessorTargetType<
   A extends Accessor<any>
 > = A extends AccessorFunction<any, infer T>
   ? T
-  : A extends AccessorChain ? any : never
+  : A extends AccessorChain
+  ? any
+  : never
 
 export type ValueTransformer<A extends Accessor<any>> =
   | AccessorTargetType<A>
