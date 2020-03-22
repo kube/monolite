@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: &node-versions [8.x, 10.x, 12.x]
+        node-version: [8.x, 10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
         id: yarn-cache
         with:
           path: node_modules
-          key: &node-modules-cache-key ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-yarn-
 
@@ -50,8 +50,8 @@ jobs:
 
     strategy:
       matrix:
-        workspace: &workspaces [monolite, babel-plugin-monolite]
-        node-version: *node-versions
+        workspace: [monolite, babel-plugin-monolite]
+        node-version: [8.x, 10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -63,8 +63,8 @@ jobs:
       - name: Load node_modules
         uses: actions/cache@v1
         with:
-          key: *node-modules-cache-key
           path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('yarn.lock') }}
 
       - run: yarn test
         name: Test ${{ matrix.workspace }}
@@ -77,8 +77,8 @@ jobs:
 
     strategy:
       matrix:
-        workspace: *workspaces
-        node-version: *node-versions
+        workspace: [monolite, babel-plugin-monolite]
+        node-version: [8.x, 10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -99,8 +99,8 @@ jobs:
       - name: Persist dist directory
         uses: actions/upload-artifact@v1
         with:
-          name: &dist-directory-path workspaces/${{ matrix.workspace }}/dist
-          path: *dist-directory-path
+          name: workspaces/${{ matrix.workspace }}/dist
+          path: workspaces/${{ matrix.workspace }}/dist
 
   publish:
     name: Publish to NPM
@@ -111,7 +111,7 @@ jobs:
 
     strategy:
       matrix:
-        workspace: *workspaces
+        workspace: [monolite, babel-plugin-monolite]
 
     steps:
       - name: Checkout repository
@@ -122,8 +122,8 @@ jobs:
       - name: Load dist directory
         uses: actions/download-artifact@v1
         with:
-          name: *dist-directory-path
-          path: *dist-directory-path
+          name: workspaces/${{ matrix.workspace }}/dist
+          path: workspaces/${{ matrix.workspace }}/dist
 
       - name: Check version update
         id: check
