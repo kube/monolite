@@ -19,11 +19,11 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: &node-versions [8.x, 10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -37,9 +37,9 @@ jobs:
         id: yarn-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          key: &node-modules-cache-key ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-${{ matrix.node-version }}-yarn-
 
       - run: yarn install
 
@@ -50,11 +50,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x]
+        workspace: &workspaces [monolite, babel-plugin-monolite]
+        node-version: *node-versions
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -62,10 +63,12 @@ jobs:
       - name: Load node_modules
         uses: actions/cache@v1
         with:
+          key: *node-modules-cache-key
           path: node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn workspaces run test
+      - run: yarn test
+        name: Test ${{ matrix.workspace }}
+        working-directory: workspaces/${{ matrix.workspace }}
 
   build:
     name: Build
@@ -74,11 +77,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x]
+        workspace: *workspaces
+        node-version: *node-versions
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -89,19 +93,14 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn workspaces run build
+      - run: yarn build
+        working-directory: workspaces/${{ matrix.workspace }}
 
-      - name: Persist lib
+      - name: Persist dist directory
         uses: actions/upload-artifact@v1
         with:
-          name: lib
-          path: lib
-
-      - name: Persist plugin
-        uses: actions/upload-artifact@v1
-        with:
-          name: plugin
-          path: plugin
+          name: &dist-directory-path workspaces/${{ matrix.workspace }}/dist
+          path: *dist-directory-path
 
   publish:
     name: Publish to NPM
@@ -110,31 +109,29 @@ jobs:
 
     if: github.ref == 'refs/heads/master'
 
+    strategy:
+      matrix:
+        workspace: *workspaces
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: ${{ github.ref }}
 
-      - name: Load lib
+      - name: Load dist directory
         uses: actions/download-artifact@v1
         with:
-          name: lib
-          path: lib
+          name: *dist-directory-path
+          path: *dist-directory-path
 
-      - name: Load plugin
-        uses: actions/download-artifact@v1
-        with:
-          name: plugin
-          path: plugin
-
-      - name: Check version changes
+      - name: Check version update
         id: check
         uses: EndBug/version-check@v1
 
       - name: Version update detected
         if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+        run: 'echo "Version update found: New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
 
       - name: Publish package to NPM
         if: steps.check.outputs.changed == 'true'
