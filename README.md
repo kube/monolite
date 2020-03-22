@@ -1,4 +1,4 @@
-![](https://github.com/kube/monolite/workflows/.github/workflows/test.yml/badge.svg)
+![](https://github.com/kube/monolite/workflows/Build/badge.svg)
 
 <h1 align="center">
   <img alt"Monolite"
