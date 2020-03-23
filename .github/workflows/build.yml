@@ -127,17 +127,17 @@ jobs:
           path: workspaces/${{ matrix.workspace }}/dist
 
       - name: Get version in current branch
-        id: current-branch-version
-        run: jq .version workspaces/${{ matrix.workspace }}/package.json
+        id: current-branch
+        run: echo "##[set-output name=version;]$(jq .version workspaces/${{ matrix.workspace }}/package.json)"
 
       - name: Get version on NPM
-        id: current-npm-version
-        run: npm view ${{ matrix.workspace }} version
+        id: current-npm
+        run: echo "##[set-output name=version;]$(npm view ${{ matrix.workspace }} version)"
 
       - name: Version update detected
         run: |
-          echo ${{ steps.current-branch-version.outputs }}
-          echo ${{ steps.current-npm-version.outputs }}
+          echo ${{ steps.current-branch.version }}
+          echo ${{ steps.current-npm.version }}
 
         # run: 'echo "Version update found: New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
       - name: Publish package to NPM
