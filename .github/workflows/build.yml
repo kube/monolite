@@ -135,6 +135,7 @@ jobs:
         run: echo "##[set-output name=value;]$(npm view ${{ matrix.workspace }} version)"
 
       - name: Version update detected
+        if: steps.npm-version.outputs.value != steps.branch-version.outputs.value
         run: 'echo "Version update found: New version: ${{ steps.branch-version.outputs.value }}"'
 
       - name: Publish package to NPM
