@@ -136,8 +136,8 @@ jobs:
 
       - name: Version update detected
         run: |
-          echo ${{ steps.current-branch.version }}
-          echo ${{ steps.current-npm.version }}
+          echo ${{ steps.current-branch.outputs.value }}
+          echo ${{ steps.current-npm.outputs.value }}
 
         # run: 'echo "Version update found: New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
       - name: Publish package to NPM
