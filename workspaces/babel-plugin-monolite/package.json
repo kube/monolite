@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-monolite",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Structural-sharing tree object modifier",
   "main": "dist/main.js",
   "scripts": {
