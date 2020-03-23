@@ -12,5 +12,5 @@
  * @type {jest.InitialOptions}
  */
 module.exports = {
-  projects: ['<rootDir>/packages/*']
+  projects: ['<rootDir>/workspaces/*'],
 }
