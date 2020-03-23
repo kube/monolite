@@ -126,18 +126,20 @@ jobs:
           name: ${{ matrix.workspace }}-dist
           path: workspaces/${{ matrix.workspace }}/dist
 
-      - name: Check version update
-        id: check
-        uses: EndBug/version-check@v1
-        with:
-          file-name: workspaces/${{ matrix.workspace }}/package.json
+      - name: Get version in current branch
+        id: branch-version
+        run: echo "##[set-output name=value;]$(jq .version workspaces/${{ matrix.workspace }}/package.json)"
+
+      - name: Get version on NPM
+        id: npm-version
+        run: echo "##[set-output name=value;]$(npm view ${{ matrix.workspace }} version)"
 
       - name: Version update detected
-        if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version update found: New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+        if: steps.npm-version.outputs.value != steps.branch-version.outputs.value
+        run: 'echo "Version update found: New version: ${{ steps.branch-version.outputs.value }}"'
 
       - name: Publish package to NPM
-        if: steps.check.outputs.changed == 'true'
+        if: steps.npm-version.outputs.value != steps.branch-version.outputs.value
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         working-directory: workspaces/${{ matrix.workspace }}
