@@ -141,7 +141,7 @@ jobs:
 
         # run: 'echo "Version update found: New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
       - name: Publish package to NPM
-        if: step.current-npm.outputs.value != '0.9.1'
+        if: steps.current-npm.outputs.value != steps.current-branch.outputs.value
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         working-directory: workspaces/${{ matrix.workspace }}
