@@ -130,9 +130,9 @@ jobs:
         id: branch-version
         run: echo "##[set-output name=value;]$(jq .version workspaces/${{ matrix.workspace }}/package.json)"
 
-      - name: Get version on NPM
+      - name: Check if version exists on NPM
         id: npm-version
-        run: echo "##[set-output name=value;]$(npm view ${{ matrix.workspace }} version)"
+        run: echo "##[set-output name=value;]$(npm view ${{ matrix.workspace }}@${{ steps.branch-version.outputs.value }} version)"
 
       - name: Version update detected
         if: steps.npm-version.outputs.value != steps.branch-version.outputs.value
