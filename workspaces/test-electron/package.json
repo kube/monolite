@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "test-electron",
+  "scripts": {
+    "test": "electron ./test.js"
+  },
+  "devDependencies": {
+    "electron": "^8.2.0"
+  }
+}
