@@ -27,6 +27,7 @@ module.exports = {
     path: BUILD_FOLDER,
     filename: 'index.js',
     libraryTarget: 'umd',
+    globalObject: 'this',
   },
   module: {
     rules: [
