@@ -11,6 +11,5 @@
     "declaration": true,
     "rootDir": "src",
     "outDir": "dist"
-  },
-  "exclude": ["**/__tests__/*"]
+  }
 }

@@ -8,13 +8,8 @@
      ## ## ## :##
       ## ## ##*/
 
-import {
-  set,
-  Accessor,
-  AccessorFunction,
-  AccessorChain,
-  ValueTransformer,
-} from './set'
+import { AccessorChain, AccessorFunction } from 'axcessor'
+import { set, Accessor, ValueTransformer } from './set'
 
 export class SetFluent<R> {
   constructor(private value: R) {}
