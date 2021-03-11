@@ -13,14 +13,28 @@ import { assign } from '../assign'
 import { Assert, IsExactType } from 'typebolt'
 // import { Accessible, IsNullable } from 'axcessor'
 
-// it('accepts accessor chain', () => {
-//   const tree = { b: { c: true }, d: { e: true } }
-//   const updatedTree = set(tree, ['b', 'c'], false)
+it('accepts accessor chain', () => {
+  {
+    const tree = { b: { c: true }, d: { e: true } }
+    const updatedTree = set(tree, ['b', 'c'], false)
 
-//   expect(updatedTree).not.toBe(tree)
-//   expect(tree.b.c).toBe(true)
-//   expect(updatedTree.b.c).toBe(false)
-// })
+    expect(updatedTree).not.toBe(tree)
+    expect(tree.b.c).toBe(true)
+    expect(updatedTree.b.c).toBe(false)
+  }
+
+  {
+    const tree = { b: { c: true }, d: { e: true } }
+    // @ts-expect-error `42` is not of type boolean
+    set(tree, ['b', 'c'], 42)
+
+    // @ts-expect-error _.b.e is not a correct path
+    set(tree, ['b', 'e'], true)
+
+    // @ts-expect-error _.d.c is not a correct path
+    set(tree, ['d', 'c'], true)
+  }
+})
 
 it('returns a new updated tree', () => {
   const tree = { b: { c: true }, d: { e: true } }
