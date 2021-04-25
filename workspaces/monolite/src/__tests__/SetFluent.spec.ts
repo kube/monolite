@@ -27,12 +27,12 @@ it('can chain transformations', () => {
 
   const updatedState = new SetFluent(state)
     .set(
-      (_) => _.a.b.c,
-      (value) => value / 2 + 1
+      _ => _.a.b.c,
+      value => value / 2 + 1
     )
     .set(
-      (_) => _.a.d.e,
-      (word) => word + '!'
+      _ => _.a.d.e,
+      word => word + '!'
     )
     .end()
 
@@ -56,8 +56,8 @@ it('accepts accessor chain', () => {
   }
 
   const updatedState = new SetFluent(state)
-    .set(['a', 'b', 'c'], (value: any) => value / 2 + 1)
-    .set(['a', 'd', 'e'], (word: any) => word + '!')
+    .set(['a', 'b', 'c'], value => value / 2 + 1)
+    .set(['a', 'd', 'e'], word => word + '!')
     .end()
 
   expect(updatedState.a.b.c).toBe(22)

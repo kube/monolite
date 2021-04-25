@@ -8,13 +8,8 @@
      ## ## ## :##
       ## ## ##*/
 
-import {
-  set,
-  Accessor,
-  AccessorFunction,
-  AccessorChain,
-  ValueTransformer,
-} from './set'
+import { AccessorChain, AccessorFunction } from 'axcessor'
+import { set, Accessor, ValueTransformer } from './set'
 
 export class SetFluent<R> {
   constructor(private value: R) {}
@@ -22,25 +17,25 @@ export class SetFluent<R> {
   /**
    * Set subproperty value using accessor function
    */
-  set<T, A extends AccessorFunction<R, T>>(
+  set<T, A extends AccessorFunction.Safe<R>>(
     accessor: A,
-    value: ValueTransformer<A>
+    value: ValueTransformer<R, A>
   ): this
 
   /**
    * Set subproperty value using accessor chain
    */
-  set<T, A extends AccessorChain>(
+  set<T, A extends AccessorChain.Safe<R>>(
     accessor: A,
-    value: ValueTransformer<A>
+    value: ValueTransformer<R, A>
   ): this
 
   /**
    * Set subproperty value
    */
-  set<T, A extends Accessor<R, T>>(
+  set<T, A extends Accessor<R>>(
     accessor: A,
-    value: ValueTransformer<A>
+    value: ValueTransformer<R, A>
   ) {
     this.value = set(this.value, accessor, value)
     return this
