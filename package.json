@@ -9,6 +9,10 @@
     "test": "jest",
     "build": "webpack"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kube/monolite.git"
+  },
   "authors": [
     {
       "name": "Chris Feijoo",

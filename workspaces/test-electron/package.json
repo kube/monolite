@@ -4,6 +4,11 @@
   "scripts": {
     "test": "electron ./test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kube/monolite.git",
+    "directory": "workspaces/test-electron"
+  },
   "devDependencies": {
     "electron": "^8.2.0"
   }
